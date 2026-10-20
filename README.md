@@ -37,6 +37,10 @@ Every push to `main` redeploys automatically.
 | Colors, fonts, animations | `src/app/globals.css` |
 | Photos and logos | `public/images/` |
 
+### Home hero photo
+
+The home hero shows Martin Luther King Jr. at the March on Washington (1963), photographed by Rowland Scherman for the US government and in the public domain ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Martin_Luther_King_-_March_on_Washington.jpg)). The page credits it under the results row. It is relit live by a WebGL shader in `src/components/home/StageLight.tsx`; to use another photo, change `images.hero` in `src/lib/content.ts` (set `focus` to where the face is).
+
 ### Optional hero video
 
 Put a muted, looping `hero.mp4` in `public/` and rebuild. The home hero switches from the still photo to the video automatically.

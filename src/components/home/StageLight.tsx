@@ -30,8 +30,8 @@ uniform sampler2D uTex;
 uniform vec2 uRes;      // canvas size in px
 uniform float uTime;    // seconds
 uniform float uIntro;   // 0..1 lamp power (fade-in with flicker)
-uniform vec2 uWin;      // visible window of the photo, in photo uv
-uniform vec2 uWinC;     // window center, in photo uv
+uniform vec2 uRectMin;  // where the photo sits on screen (uv), top-left
+uniform vec2 uRectSize; // and its size (uv); edges dissolve into the dark
 uniform vec2 uTarget;   // where the beam lands, in screen uv
 uniform float uLampX;   // lamp x, in screen uv (follows the mouse a little)
 
@@ -54,9 +54,12 @@ void main() {
   vec2 q = vUv;
   vec2 qa = vec2(q.x * aspect, q.y);           // aspect-corrected for distances
 
-  // --- photo, in linear light
-  vec2 imgUv = uWinC + (q - 0.5) * uWin;
-  vec3 photo = toLinear(texture2D(uTex, imgUv).rgb);
+  // --- photo, in linear light, framed like a stage: whole picture, edges fade to black
+  vec2 imgUv = (q - uRectMin) / uRectSize;
+  float inside = step(0.0, imgUv.x) * step(imgUv.x, 1.0) * step(0.0, imgUv.y) * step(imgUv.y, 1.0);
+  float feather = smoothstep(0.0, 0.16, imgUv.x) * smoothstep(0.0, 0.08, 1.0 - imgUv.x)
+                * smoothstep(0.0, 0.05, imgUv.y) * smoothstep(0.0, 0.22, 1.0 - imgUv.y);
+  vec3 photo = toLinear(texture2D(uTex, clamp(imgUv, 0.0, 1.0)).rgb) * inside * feather;
 
   // --- beam geometry: lamp above the frame, aimed at the target
   vec2 lamp = vec2(uLampX * aspect, -0.06);
@@ -71,13 +74,16 @@ void main() {
   float beam = cone * atten * uIntro;
 
   // --- pool of light on the speaker (soft ellipse, brighter core)
-  vec2 d = (qa - tgt) / vec2(0.24, 0.5);
+  vec2 d = (qa - tgt) / vec2(0.22, 0.34);
   float pool = exp(-dot(d, d) * 2.2) * uIntro;
+  // a stage spot is cut off below the chest; the front row stays in shadow
+  float below = smoothstep(0.04, 0.3, q.y - uTarget.y);
+  pool *= mix(1.0, 0.3, below);
 
   // --- relight: cold near-dark ambient + warm tungsten key light
   vec3 warm = vec3(1.0, 0.82, 0.58);
   vec3 ambient = photo * vec3(0.012, 0.014, 0.024);
-  vec3 col = ambient + photo * warm * (pool * 1.5 + beam * 0.4);
+  vec3 col = ambient + photo * warm * (pool * 1.5 + beam * 0.4 * (1.0 - below * 0.8));
 
   // --- volumetric haze drifting up through the beam
   float t = uTime;
@@ -173,13 +179,13 @@ export function StageLight({ src, imgW, imgH, focus, className = "" }: Props) {
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
     const u = (n: string) => gl.getUniformLocation(program, n);
-    const uRes = u("uRes"), uTime = u("uTime"), uIntro = u("uIntro"), uWin = u("uWin"), uWinC = u("uWinC"), uTarget = u("uTarget"), uLampX = u("uLampX");
+    const uRes = u("uRes"), uTime = u("uTime"), uIntro = u("uIntro"), uRectMin = u("uRectMin"), uRectSize = u("uRectSize"), uTarget = u("uTarget"), uLampX = u("uLampX");
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const finePointer = window.matchMedia("(pointer: fine)").matches;
 
-    // Photo framing: cover the canvas, keep the subject on the right half on wide screens.
-    let anchor: [number, number] = [0.72, 0.52];
+    // Photo framing: the whole photo, height-fitted on the right on wide screens and
+    // width-fitted at the top on narrow ones, so the subject keeps its context.
     const layout = () => {
       const mobile = canvas.clientWidth < 768;
       // Lower internal resolution keeps the shader cheap; grain hides the softness.
@@ -190,22 +196,28 @@ export function StageLight({ src, imgW, imgH, focus, className = "" }: Props) {
 
       const A = canvas.clientWidth / canvas.clientHeight;
       const I = imgW / imgH;
-      anchor = mobile ? [0.58, 0.24] : [0.72, 0.5];
-      const zoom = mobile ? 1.0 : 1.12;
-      let w = A > I ? 1 : A / I;
-      let h = A > I ? I / A : 1;
-      w /= zoom;
-      h /= zoom;
-      let cx = focus[0] - (anchor[0] - 0.5) * w;
-      let cy = focus[1] - (anchor[1] - 0.5) * h;
-      cx = Math.min(1 - w / 2, Math.max(w / 2, cx));
-      cy = Math.min(1 - h / 2, Math.max(h / 2, cy));
-      // Screen position of the subject after clamping, a bit above center (head and chest).
-      const tx = (focus[0] - cx) / w + 0.5;
-      const ty = (focus[1] - 0.06 - cy) / h + 0.5;
+      let rw: number, rh: number, rx: number, ry: number;
+      if (mobile) {
+        rw = 1.08;
+        rh = (rw / I) * A;
+        rx = (1 - rw) / 2 + 0.04;
+        ry = 0.02;
+      } else {
+        rh = 1.04;
+        rw = (rh * I) / A;
+        if (rw > 0.75) {
+          rw = 0.75;
+          rh = (rw / I) * A;
+        }
+        rx = 1 - rw - 0.01;
+        ry = -0.02;
+      }
+      // Beam lands on the face, slightly below it (head and chest).
+      const tx = rx + focus[0] * rw;
+      const ty = ry + focus[1] * rh;
       gl.uniform2f(uRes, canvas.width, canvas.height);
-      gl.uniform2f(uWin, w, h);
-      gl.uniform2f(uWinC, cx, cy);
+      gl.uniform2f(uRectMin, rx, ry);
+      gl.uniform2f(uRectSize, rw, rh);
       gl.uniform2f(uTarget, tx, ty);
       lampHome = tx;
       lampX = lampTarget = tx;

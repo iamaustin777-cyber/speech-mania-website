@@ -43,7 +43,7 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-[59%_40%] opacity-25 brightness-75"
+              className="object-cover object-[62%_20%] opacity-25 brightness-75"
             />
             <StageLight
               src={images.hero.src}
@@ -107,6 +107,7 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
             </li>
           ))}
         </ul>
+        <p className="mt-3 text-right text-xs text-mute/70">{images.hero.credit}</p>
       </div>
     </section>
   );
