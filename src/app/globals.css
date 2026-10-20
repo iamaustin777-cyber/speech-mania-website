@@ -419,23 +419,6 @@ body {
 
 
 
-/* ---------- Scoreboard cells ---------- */
-.sb-cell { isolation: isolate; }
-/* warm light under the cursor, only while hovered (small surface, so the repaint is cheap) */
-.sb-cell::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgb(231 223 211 / 0.1), transparent 70%);
-  transition: opacity 0.35s ease;
-}
-.sb-cell:hover::before { opacity: 1; }
-.sb-dot { background: rgb(244 242 238 / 0.12); }
-.sb-dot--lit { background: rgb(244 242 238 / 0.55); transition-property: opacity, transform, background-color; }
-.sb-cell:hover .sb-dot--lit { background: var(--color-gold); box-shadow: 0 0 8px rgb(231 223 211 / 0.45); }
 
 /* Mic mode: bars follow the voice (JS sets scaleY), so the idle pulse stops. */
 .wave-live .wave-bar { animation: none; max-height: 100% !important; transform: scaleY(0.12); transition: transform 60ms linear; }

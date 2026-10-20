@@ -26,7 +26,7 @@ export default function ImpactPage() {
       <section aria-labelledby="numbers-title" className="mx-auto max-w-[1400px] px-5 py-20 sm:px-10 lg:px-16">
         <SectionHeading id="numbers-title" title={impact.numbersTitle} subtitle={impact.numbersSubtitle} />
         <div className="mt-14">
-          <Scoreboard stats={impact.stats} size="md" />
+          <Scoreboard stats={impact.stats} />
         </div>
       </section>
 

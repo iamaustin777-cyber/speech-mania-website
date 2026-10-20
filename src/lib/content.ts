@@ -136,6 +136,8 @@ export const home = {
   impact: {
     title: "Our Impact",
     subtitle: "What we've done so far across Southeast Asia",
+    // Same fact as About > Who We Are, shown under the seat map.
+    sentence: "So far we've worked with students from 35+ schools in 3 countries.",
     stats: [
       { value: 35, suffix: "+", label: "Schools Impacted" },
       { value: 3, label: "Countries" },
