@@ -1,0 +1,129 @@
+import type { Metadata } from "next";
+import { ButtonLink } from "@/components/Button";
+import { RegistrationForm } from "@/components/forms/RegistrationForm";
+import { DownloadIcon } from "@/components/Icons";
+import { PageHeader } from "@/components/PageHeader";
+import { PathPicker } from "@/components/PathPicker";
+import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Spotlight } from "@/components/Spotlight";
+import { getInvolved, PLACEHOLDER_PDF } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Get Involved",
+  description:
+    "Register for a Speech Mania workshop, partner with us as a school, sponsor our mission, or download free public speaking resources.",
+};
+
+export default function GetInvolvedPage() {
+  const { registration, sponsor, resources } = getInvolved;
+  return (
+    <>
+      <PageHeader eyebrow="Your Cue" title={getInvolved.title} subtitle={getInvolved.subtitle} />
+
+      <section aria-labelledby="paths-title" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <Reveal className="max-w-3xl">
+          <h2 id="paths-title" className="eyebrow">
+            Pick your spotlight
+          </h2>
+          <p className="mt-6 text-xl leading-relaxed text-ink">{getInvolved.intro}</p>
+        </Reveal>
+        <div className="mt-12">
+          <PathPicker />
+        </div>
+      </section>
+
+      {/* Registration on a dark glass panel */}
+      <section id="register" aria-labelledby="register-title" className="relative isolate overflow-hidden py-24 lg:py-32">
+        <Spotlight className="opacity-60" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:px-8">
+          <SectionHeading id="register-title" eyebrow="Register" title={registration.title} subtitle={registration.subtitle} />
+          <Reveal className="glass rounded-3xl p-6 shadow-[0_40px_120px_-30px_rgb(0_0_0/0.8)] sm:p-10">
+            <RegistrationForm />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Sponsorship */}
+      <section id="sponsor" aria-labelledby="sponsor-title" className="border-y border-line bg-hall/50 py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading id="sponsor-title" eyebrow="Sponsors" title={sponsor.title} subtitle={sponsor.subtitle} />
+          <ol className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-3">
+            {sponsor.options.map((o, i) => (
+              <li key={o.title} className="group relative isolate bg-void p-8 transition-colors duration-500 hover:bg-hall sm:p-10">
+                <span aria-hidden className="spotlight -z-10 opacity-0 transition-opacity duration-700 group-hover:opacity-70" />
+                <span className="display text-6xl text-gold/80">0{i + 1}</span>
+                <h3 className="display mt-6 text-3xl sm:text-4xl">{o.title}</h3>
+                <p className="mt-4 leading-relaxed">{o.body}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-10 flex flex-wrap gap-4">
+            {/* TODO: link the sponsorship package PDF once it exists. */}
+            <ButtonLink href={PLACEHOLDER_PDF} variant="gold">
+              Download Sponsorship Package
+            </ButtonLink>
+            <ButtonLink href="/contact" variant="ghost">
+              Schedule a Meeting
+            </ButtonLink>
+          </div>
+
+          <div className="mt-20 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
+            <div>
+              <h3 className="eyebrow">{sponsor.impactTitle}</h3>
+              <dl className="mt-6 flex flex-col divide-y divide-line">
+                {sponsor.impact.map((s) => (
+                  <div key={s.value} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                    <dt className="order-2 sm:text-right">{s.label}</dt>
+                    <dd className="display order-1 text-5xl">{s.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <Reveal>
+              <figure className="relative rounded-3xl border border-gold/25 bg-void/60 p-8 sm:p-12">
+                <span aria-hidden className="absolute -top-10 left-6 font-display text-[8rem] leading-none text-gold/40">
+                  &ldquo;
+                </span>
+                <blockquote>
+                  <p className="text-xl leading-relaxed text-ink sm:text-2xl">{sponsor.quote}</p>
+                </blockquote>
+                <figcaption className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold">— {sponsor.quoteBy}</figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Free resources as download cards */}
+      <section id="resources" aria-labelledby="resources-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+        <SectionHeading id="resources-title" eyebrow="Free" title={resources.title} subtitle={resources.subtitle} />
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2">
+          {resources.items.map((r, i) => (
+            <Reveal as="li" key={r.title} delay={i * 0.06}>
+              <article className="group flex h-full flex-col gap-6 rounded-2xl border border-ink/10 bg-hall/50 p-7 transition duration-500 hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_20px_60px_-20px_rgb(255_210_122/0.3)] sm:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <span className="rounded-md border border-red/50 px-2 py-1 font-display text-sm tracking-wider text-red-text">PDF</span>
+                  <DownloadIcon className="size-6 text-mute transition-colors group-hover:text-gold" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="display text-3xl">{r.title}</h3>
+                  <p className="mt-3 leading-relaxed">{r.body}</p>
+                </div>
+                {/* TODO: point to the real PDF (e.g. /files/...) — no file in the repo yet. */}
+                <a
+                  href={PLACEHOLDER_PDF}
+                  className="inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-gold underline-offset-4 hover:underline"
+                >
+                  <DownloadIcon className="size-4" />
+                  Download PDF
+                  <span className="sr-only">: {r.title}</span>
+                </a>
+              </article>
+            </Reveal>
+          ))}
+        </ul>
+      </section>
+    </>
+  );
+}

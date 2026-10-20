@@ -104,7 +104,7 @@ export function TipscTicket({ full = false }: { full?: boolean }) {
           className="relative flex flex-col justify-between gap-8 border-t-2 border-dashed border-ink/20 bg-[#0d1328] p-6 sm:p-10 lg:border-l-2 lg:border-t-0"
         >
           <div>
-            <p className="eyebrow !text-red-text">Admit One</p>
+            <p className="eyebrow text-red-text">Admit One</p>
             <p className="display mt-4 text-7xl text-ink">01</p>
             <p className="display text-4xl text-gold">Feb 2025</p>
           </div>

@@ -135,7 +135,7 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`display block py-2 text-5xl sm:text-6xl ${isActive(item.href) ? "!text-red" : ""}`}
+                  className={`display block py-2 text-5xl sm:text-6xl ${isActive(item.href) ? "text-red" : ""}`}
                 >
                   {item.label}
                 </Link>
