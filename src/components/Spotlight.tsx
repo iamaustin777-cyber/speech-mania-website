@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
  * Warm stage spotlight shining down from the top of its parent.
  * With `follow`, it drifts toward the mouse on desktop (fine pointer only,
  * never when reduced motion is requested). Parent must be `relative`.
+ * The beam moves with `transform`, so following the mouse never repaints the gradient.
  */
 export function Spotlight({
   follow = false,
@@ -26,23 +27,23 @@ export function Spotlight({
     if (!fine || reduced) return;
 
     const host = el.parentElement!;
-    let target = 50;
-    let current = 50;
+    let target = 0;
+    let current = 0;
     let raf = 0;
 
     const tick = () => {
-      current += (target - current) * 0.06;
-      el.style.setProperty("--x", `${current.toFixed(2)}%`);
-      if (Math.abs(target - current) > 0.05) raf = requestAnimationFrame(tick);
-      else raf = 0;
+      current += (target - current) * 0.08;
+      el.style.transform = `translate3d(${current.toFixed(1)}px,0,0)`;
+      // Stop once settled; restart on the next pointer move.
+      raf = Math.abs(target - current) > 0.5 ? requestAnimationFrame(tick) : 0;
     };
     const onMove = (e: PointerEvent) => {
       const r = host.getBoundingClientRect();
-      // Keep the beam near center: it leans toward the cursor rather than chasing it.
-      target = 50 + (((e.clientX - r.left) / r.width) * 100 - 50) * 0.55;
+      // Lean toward the cursor rather than chase it.
+      target = (e.clientX - r.left - r.width / 2) * 0.5;
       if (!raf) raf = requestAnimationFrame(tick);
     };
-    host.addEventListener("pointermove", onMove);
+    host.addEventListener("pointermove", onMove, { passive: true });
     return () => {
       host.removeEventListener("pointermove", onMove);
       cancelAnimationFrame(raf);

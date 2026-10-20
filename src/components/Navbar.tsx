@@ -13,11 +13,14 @@ export function Navbar() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // Glass bar once the page has scrolled: watch a sentinel at the top instead of scroll events.
+  const sentinelRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setScrolled(!entry.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   // Close the menu whenever the route changes.
@@ -58,6 +61,8 @@ export function Navbar() {
   const solid = scrolled && !open;
 
   return (
+    <>
+    <div ref={sentinelRef} aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-6" />
     <header className="fixed inset-x-0 top-0 z-50">
       <a
         href="#main"
@@ -66,7 +71,7 @@ export function Navbar() {
         Skip to content
       </a>
       <div
-        className={`transition-all duration-500 ease-stage ${
+        className={`transition-[background-color,border-color,box-shadow] duration-500 ease-stage ${
           solid ? "glass border-x-0 border-t-0 shadow-[0_10px_40px_rgb(0_0_0/0.45)]" : "border-b border-transparent"
         }`}
       >
@@ -108,8 +113,8 @@ export function Navbar() {
               className="relative z-[61] grid size-11 place-items-center rounded-lg border border-ink/20 text-ink lg:hidden"
             >
               <span aria-hidden className="relative block h-3 w-5">
-                <span className={`absolute left-0 h-0.5 w-5 bg-current transition-all duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
-                <span className={`absolute left-0 h-0.5 w-5 bg-current transition-all duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
+                <span className={`absolute left-0 h-0.5 w-5 bg-current transition-[top,transform] duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
+                <span className={`absolute left-0 h-0.5 w-5 bg-current transition-[top,transform] duration-300 ${open ? "top-1.5 -rotate-45" : "top-3"}`} />
               </span>
             </button>
           </div>
@@ -121,7 +126,7 @@ export function Navbar() {
         id="mobile-menu"
         ref={menuRef}
         hidden={!open}
-        className="fixed inset-0 z-[60] overflow-y-auto bg-void/97 backdrop-blur-xl lg:hidden"
+        className="fixed inset-0 z-[60] overflow-y-auto overflow-x-hidden bg-void lg:hidden"
       >
         <div aria-hidden className="spotlight opacity-70" />
         <nav aria-label="Mobile" className="relative flex min-h-full flex-col justify-center px-6 pb-12 pt-28">
@@ -149,5 +154,6 @@ export function Navbar() {
         </nav>
       </div>
     </header>
+    </>
   );
 }

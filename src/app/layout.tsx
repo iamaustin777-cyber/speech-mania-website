@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "Speech Mania | %s",
   },
   description:
-    "Speech Mania empowers students across Thailand and Southeast Asia through public speaking competitions, workshops, and national team management.",
+    "Speech Mania runs public speaking competitions, workshops and Thailand's national team for students across Thailand and Southeast Asia.",
   openGraph: {
     title: "Speech Mania — Find Your Voice",
     description: "Youth-led public speaking and leadership programs across Thailand and Southeast Asia.",

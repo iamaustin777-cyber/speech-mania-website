@@ -10,7 +10,7 @@ import { about, images } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Speech Mania is a youth-led organization empowering students across Thailand and Southeast Asia through public speaking and leadership programs.",
+    "Speech Mania is a youth-led organization running public speaking and leadership programs for students across Thailand and Southeast Asia.",
 };
 
 export default function AboutPage() {
@@ -115,18 +115,10 @@ export default function AboutPage() {
                   sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
                   className="object-cover object-top grayscale-[0.35] transition duration-700 ease-stage group-hover:scale-[1.03] group-hover:grayscale-0"
                 />
-                {/* side lighting: warm key light from one side, deep shadow from the other */}
+                {/* side lighting: plain gradients, no blend modes (cheaper to scroll past) */}
                 <div
                   aria-hidden
-                  className={`absolute inset-0 mix-blend-multiply ${
-                    i % 2 ? "bg-gradient-to-l" : "bg-gradient-to-r"
-                  } from-transparent via-[#1a1530]/40 to-[#05070f]`}
-                />
-                <div
-                  aria-hidden
-                  className={`absolute inset-0 opacity-60 mix-blend-soft-light ${
-                    i % 2 ? "bg-gradient-to-l" : "bg-gradient-to-r"
-                  } from-gold/70 via-transparent to-transparent`}
+                  className={`absolute inset-0 ${i % 2 ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-transparent via-transparent to-void/80`}
                 />
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-void to-transparent" />
               </div>

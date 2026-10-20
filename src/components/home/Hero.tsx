@@ -67,18 +67,9 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
         <Waveform
           className="fade-up mt-8 h-12 w-full max-w-xl sm:h-14"
           style={{ ["--d" as string]: "1.9s" }}
-          color="url(#hero-wave)"
+          color="linear-gradient(180deg, #ffd27a, #d7262e)"
           count={64}
         />
-        <svg aria-hidden className="absolute size-0">
-          <defs>
-            <linearGradient id="hero-wave" x1="0" x2="1">
-              <stop offset="0" stopColor="#d7262e" />
-              <stop offset="0.5" stopColor="#ffd27a" />
-              <stop offset="1" stopColor="#d7262e" />
-            </linearGradient>
-          </defs>
-        </svg>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div className="fade-up max-w-xl" style={{ ["--d" as string]: "2.2s" }}>

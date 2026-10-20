@@ -67,7 +67,7 @@ export const REGISTER_HREF = "/get-involved#register";
 
 export const footer = {
   tagline:
-    "Empowering students across Thailand and Southeast Asia through public speaking and leadership programs.",
+    "Public speaking and leadership programs for students in Thailand and Southeast Asia.",
   quickLinks: [
     { href: "/about", label: "About Us" },
     { href: "/programs", label: "Programs" },
@@ -95,12 +95,12 @@ export const home = {
   hero: {
     line1: "Find Your Voice.",
     line2: "Shape Your Future.",
-    body: "Speech Mania empowers students across Southeast Asia to discover the transformative power of public speaking. From first-time speakers to world champions, we help you develop the confidence and skills to make your voice heard.",
+    body: "Speech Mania is a youth-led group that runs public speaking competitions, workshops and Thailand's national team. We work with students across Southeast Asia, from first-time speakers to students competing at Worlds.",
     badge: { value: "180+", label: "Participants" },
   },
   impact: {
     title: "Our Impact",
-    subtitle: "Making a difference across Southeast Asia through education and empowerment",
+    subtitle: "What we've done so far across Southeast Asia",
     stats: [
       { value: 35, suffix: "+", label: "Schools Impacted" },
       { value: 3, label: "Countries" },
@@ -111,24 +111,24 @@ export const home = {
   },
   why: {
     title: "Why Speech?",
-    subtitle: "Speech can change lives through powerful skills and confidence",
+    subtitle: "What students get out of public speaking",
     items: [
       {
         title: "Self Advocacy",
-        body: "Learn to articulate your thoughts, defend your positions, and stand up for what you believe in with confidence and clarity.",
+        body: "Learn to say what you think, defend it when someone pushes back, and speak up for yourself.",
       },
       {
         title: "Communication",
-        body: "Master the art of effective communication, build meaningful connections, and influence others through powerful speaking.",
+        body: "Learn to explain an idea clearly and persuade people who don't agree with you yet.",
       },
       {
         title: "Career Mobility",
-        body: "Open doors to educational and professional opportunities through enhanced presentation and leadership skills.",
+        body: "Presentation and leadership skills help with university applications, interviews and work.",
       },
     ],
   },
   tipsc: {
-    body: "Join Thailand's premier public speaking competition with 180+ participants from across the nation.",
+    body: "Thailand's national public speaking competition, with 180+ participants from across the country.",
     stats: [
       { value: "180+", label: "Participants" },
       { value: "4", label: "Preliminary Rounds" },
@@ -136,24 +136,24 @@ export const home = {
   },
   programs: {
     title: "Our Programs",
-    subtitle: "Comprehensive training and competition opportunities for every skill level",
+    subtitle: "Competitions and training for every level",
     items: [
       {
         title: "National Competitions",
-        body: "Host 1-3 national tournaments yearly, bringing together the best student speakers from across Thailand.",
+        body: "We host 1 to 3 national tournaments a year for student speakers from across Thailand.",
         img: event(12, "National Competitions"),
         href: "/programs#national-competitions",
       },
       {
         title: "Pre-Competition Training",
-        body: "Expert-led workshops in public speaking techniques, judging criteria, and performance skills.",
+        body: "Workshops on speaking technique, delivery, and how judges score a speech.",
         img: event(18, "Pre-Competition Training"),
         href: "/programs#training",
       },
       {
         title: "National Team Management",
         tag: "WIDPSC 2025",
-        body: "Train and support Thailand's National Public Speaking team for WIDPSC international competition.",
+        body: "We train and support Thailand's national public speaking team for WIDPSC.",
         img: event(22, "National Team Management"),
         href: "/programs#national-team",
       },
@@ -168,7 +168,7 @@ export const home = {
   ],
   cta: {
     title: "Ready to Find Your Voice?",
-    body: "Join hundreds of students across Southeast Asia in developing confidence and communication skills.",
+    body: "Hundreds of students across Southeast Asia have trained with us. Sign up for a workshop to start.",
   },
 };
 
@@ -177,66 +177,66 @@ export const about = {
     "Speech has transformed the way I see the world and connect with people and I think it's something I'd like to see other children experience",
   quoteBy: "Speech Mania Founder, Proud R",
   whoWeAre: [
-    "Speech Mania is a youth-led organization that empowers students across Thailand and Southeast Asia to develop their own voices and learn about different ideas through public speaking and leadership programs.",
-    "Founded to make high-quality speech education accessible, we foster communication skills within youths and provide them with platforms to showcase their talents and perspectives.",
-    "Through competitions, workshops, and national team management, we've impacted 35+ schools across 3 countries, creating a vibrant community of confident, articulate young leaders.",
+    "Speech Mania is a youth-led organization. We run public speaking and leadership programs for students across Thailand and Southeast Asia.",
+    "We started Speech Mania to make good speech coaching easier to get, and to give students real stages to speak on.",
+    "So far we've worked with students from 35+ schools in 3 countries through competitions, workshops and the national team.",
   ],
   mission:
-    "To empower the next generation of leaders by making world-class public speaking education accessible to students across Southeast Asia, fostering confidence, critical thinking, and communication excellence.",
+    "To make top-level public speaking training available to students across Southeast Asia, so they can think clearly and speak with confidence.",
   matters: {
     title: "Why Speech Matters",
-    subtitle: "Public speaking is more than just talking—it's about transforming lives",
+    subtitle: "Why we think every student should learn it",
     items: [
       {
         title: "Increased Ability to Self Advocate",
-        body: "Public speaking empowers students to articulate their thoughts clearly, defend their positions with confidence, and stand up for what they believe in. Through our programs, students learn to express their needs, challenge injustice, and advocate for themselves and their communities. This skill is invaluable in academic settings, future careers, and personal relationships.",
+        body: "Students learn to state what they think and defend it. In our programs they practise speaking up for themselves and their communities, which matters in class, at work and at home.",
         img: event(42, "Increased Ability to Self Advocate", true),
       },
       {
         title: "Enhanced Communication Ability",
-        body: "Effective communication is the cornerstone of success in every field. Our training helps students master verbal and non-verbal communication, active listening, audience analysis, and persuasive techniques. Students learn to adapt their message to different contexts, read social cues, and build meaningful connections that last a lifetime.",
+        body: "Our training covers voice and body language, listening, reading an audience, and persuasion. Students learn to change how they say something depending on who is listening.",
         img: event(48, "Enhanced Communication Ability"),
       },
       {
         title: "Greater Career & Educational Mobility",
-        body: "Strong public speaking skills open doors to scholarships, internships, and leadership positions. Our alumni have been accepted to top universities worldwide, secured competitive internships, and won prestigious awards. The confidence and competence gained through speech training translates directly to interview success, networking opportunities, and professional advancement.",
+        body: "Speaking well helps with scholarship and university interviews, internships and leadership roles. Our alumni have gone on to top universities, competitive internships and awards.",
         img: event(55, "Greater Career & Educational Mobility", true),
       },
     ],
   },
   team: {
     title: "Meet Our Team",
-    subtitle: "Passionate youth leaders dedicated to empowering the next generation of speakers",
+    subtitle: "The students who run Speech Mania",
     members: [
       {
         name: "Proud Rodphothong",
         role: "Founder & Executive Director",
-        bio: "Former WIDPSC 2x Thailand Representative and Part of the Thai National Debate Team. Proud founded Speech Mania inspired by how speech has impacted her own life and in hopes of increasing access to speaking education in Southeast Asia. Under their leadership the organization has impacted over 35 schools.",
+        bio: "Represented Thailand at WIDPSC twice and was on the Thai National Debate Team. Proud started Speech Mania because of what speech did for her, and to make speaking education easier to get in Southeast Asia. Speech Mania has since worked with over 35 schools.",
         img: { src: "/images/team-proud.jpg", w: 791, h: 1148 },
       },
       {
         name: "Aiko Thangthanakeat",
         role: "Co-Founder & Communications Director",
-        bio: "Former Debater with coaching experience in America. Aiko has extensive experience in public speaking and outreach having run multiple successful fundraisers in Thailand. Aiko joined the team in hopes of sharing her skills and expertise in helping South-East Asian students.",
+        bio: "Former debater who has coached in the US. Aiko has run several successful fundraisers in Thailand and joined the team to help Southeast Asian students with public speaking.",
         img: { src: "/images/team-aiko.png", w: 688, h: 870 },
       },
       {
         name: "Thanadetch Mateedunsatits",
         role: "Co-Founder & Operations Director",
-        bio: "Manages all tournament operations and judging coordination. Detch has helped organize over 5 conferences and competitions in Thailand and also oversees the logistics of Team Thailand at Worlds.",
+        bio: "Runs tournament operations and judging. Detch has helped organize more than 5 conferences and competitions in Thailand and handles logistics for Team Thailand at Worlds.",
         img: { src: "/images/team-detch.png", w: 742, h: 1114 },
       },
       {
         name: "Cedric Zarate",
         role: "Technology Director",
-        bio: "Cedric oversees all things tech at Speech Mania. He manages our website and leads development of speech.io, an AI practice companion that gives instant, actionable feedback on delivery and structure. His work centers on access and scalability, making high-quality speaking practice available to students across Southeast Asia.",
+        bio: "Cedric runs the tech side of Speech Mania. He manages this website and leads development of speech.io, an AI practice tool that gives instant feedback on delivery and structure, so more students across Southeast Asia can practise on their own.",
         img: { src: "/images/team-cedric.jpg", w: 682, h: 1024 },
       },
     ],
   },
   cta: {
     title: "Want to Join Our Team?",
-    body: "We're always looking for passionate individuals to help expand our impact",
+    body: "We're always looking for people to help us reach more students",
   },
 };
 
@@ -249,10 +249,10 @@ export const widpscResults = [
 
 export const programs = {
   title: "Our Programs",
-  subtitle: "Comprehensive public speaking education from beginner workshops to international competitions",
+  subtitle: "From beginner workshops to international competitions",
   competitions: {
     title: "National Competitions",
-    body: "Speech Mania hosts 1-3 national tournaments yearly, providing a platform for students across Thailand to showcase their public speaking talents and compete at the highest level.",
+    body: "Speech Mania hosts 1 to 3 national tournaments a year where students from across Thailand compete in public speaking.",
     points: [
       "Two speech categories: Persuasive and Impromptu",
       "Professional judging by experienced coaches and former competitors",
@@ -265,7 +265,7 @@ export const programs = {
     eyebrow: "Featured Event / Our Upcoming Event",
     name: "TIPSC 2025",
     fullName: "Thailand Individual Public Speaking Competition",
-    body: 'The Thailand Individual Public Speaking Competition (TIPSC) is a national qualifier for the most prestigious tournament for public speaking, WIDPSC 25 (Worlds Individual Public Speaking and Debate 2025) which will be hosted in Kuala Lumpur this year. Join us for our flagship competition featuring the theme "Letter to a Better Future" - where students share their vision for positive change through powerful speeches.',
+    body: 'TIPSC is the national qualifier for WIDPSC 2025, the World Individual Debating and Public Speaking Championships, held in Kuala Lumpur. The 2025 theme is "Letter to a Better Future": students give speeches about a change they want to see.',
     date: "1st February 2025",
     venue: "International Community School Bangkok",
     categories: "Impromptu & Persuasive Speech",
@@ -278,30 +278,30 @@ export const programs = {
   },
   inPerson: {
     title: "In-Person Workshops (TBD)",
-    subtitle: "Exciting new workshop programs coming soon. Be the first to know when they launch!",
+    subtitle: "New in-person workshops are on the way. Leave your details and we'll tell you when they open.",
     cards: [
-      "Our upcoming in-person workshops will provide hands-on training in public speaking, debate techniques, and performance skills. Small class sizes ensure personalized attention and rapid skill development.",
-      "Interactive sessions designed for students at all levels. Learn from experienced coaches and practice with peers in a supportive environment. Workshop schedules will be announced soon.",
+      "Hands-on training in public speaking, debate and performance, in small classes so each student gets individual feedback.",
+      "Sessions for every level, with experienced coaches and time to practise with other students. Dates will be announced soon.",
     ],
   },
   training: {
     title: "Training Workshops",
-    subtitle: "Expert-led workshops designed to prepare students for competition success and develop lifelong communication skills.",
+    subtitle: "Workshops led by experienced coaches to get students ready for competition.",
     courses: [
       {
         title: "Public Speaking Fundamentals",
         length: "4 weeks",
-        body: "Master the basics: body language, vocal variety, and audience engagement",
+        body: "The basics: body language, voice, and holding an audience's attention",
       },
       {
         title: "Advanced Speech Writing",
         length: "6 weeks",
-        body: "Craft compelling narratives with persuasive structure and rhetorical devices",
+        body: "Write persuasive speeches with a clear structure and rhetorical devices",
       },
       {
         title: "Judging & Evaluation",
         length: "2 weeks",
-        body: "Learn to analyze speeches and provide constructive feedback",
+        body: "Learn to assess speeches and give useful feedback",
       },
     ],
   },
@@ -310,20 +310,20 @@ export const programs = {
     subtitle:
       "We manage, fund, and train Thailand's National Public Speaking team for the World Individual Debating and Public Speaking Championships (WIDPSC)",
     whatIs:
-      "The World Individual Debating and Public Speaking Championships is the most prestigious competitive public speaking competition for high schools globally. Students compete in multiple categories including impromptu speaking, persuasive speaking, and debating against the best young orators from around the world.",
+      "The World Individual Debating and Public Speaking Championships is the top international public speaking competition for high school students. Students compete in impromptu speaking, persuasive speaking, debating and other events against speakers from around the world.",
     achievementsTitle: "Team Thailand WIDPSC 2025 Achievements",
   },
   cta: {
     title: "Ready to Join Our Programs?",
-    body: "Whether you're a beginner or aspiring champion, we have a program for you",
+    body: "We have programs for beginners and for students aiming to compete",
   },
 };
 
 export const impact = {
   title: "Our Impact",
-  subtitle: "Transforming lives and building confident leaders across Southeast Asia",
+  subtitle: "Our numbers, results and students so far",
   numbersTitle: "By the Numbers",
-  numbersSubtitle: "Our reach and impact continue to grow",
+  numbersSubtitle: "Across Thailand and Southeast Asia",
   stats: [
     { value: 35, suffix: "+", label: "Schools Impacted" },
     { value: 3, label: "Countries Reached" },
@@ -334,7 +334,7 @@ export const impact = {
     { value: 500, suffix: "K THB", label: "Raised" },
   ] as Stat[],
   storiesTitle: "Success Stories",
-  storiesSubtitle: "Hear from students whose lives were transformed",
+  storiesSubtitle: "Two students on what Speech Mania meant for them",
   stories: [
     {
       // TODO: confirm spelling — "Chantaprapab" here, "Chantaraprapab" elsewhere.
@@ -355,7 +355,7 @@ export const impact = {
     },
   ],
   achievementsTitle: "Competition Achievements",
-  achievementsSubtitle: "Our students excel on national and international stages",
+  achievementsSubtitle: "Results at national and international competitions",
   timeline: [
     {
       year: "2025",
@@ -378,10 +378,10 @@ export const impact = {
     { year: "2023", title: "Program Launch", items: ["2 workshops delivered"] },
   ],
   galleryTitle: "Moments That Matter",
-  gallerySubtitle: "Capturing the energy and excitement of our events",
+  gallerySubtitle: "Photos from TIPSC 2025",
   cta: {
-    title: "Be Part of Our Success Story",
-    body: "Join hundreds of students who have transformed their lives through public speaking",
+    title: "Want to take part?",
+    body: "Register for a workshop or our next competition",
   },
 };
 
@@ -390,9 +390,9 @@ export const PLACEHOLDER_PDF = "#";
 
 export const getInvolved = {
   title: "Get Involved",
-  subtitle: "There are many ways to join the Speech Mania community and make an impact",
+  subtitle: "Ways to take part as a student, school or sponsor",
   intro:
-    "Whether you're a student looking to develop your speaking skills, a school interested in partnership opportunities, or a sponsor wanting to support youth education, we welcome you to be part of our growing community. Together, we're building the next generation of confident, articulate leaders across Southeast Asia.",
+    "Students can join our workshops and competitions. Schools can partner with us, and sponsors can fund places for students who couldn't otherwise attend.",
   paths: [
     {
       id: "students",
@@ -407,7 +407,7 @@ export const getInvolved = {
     {
       id: "schools",
       title: "For Schools",
-      body: "Bring world-class speech and debate education to your institution through partnerships, workshops, and competition participation.",
+      body: "Partner with us to run workshops at your school and enter your students in our competitions.",
       links: [
         { label: "Partner With Us", href: "/contact" },
         { label: "Request Workshop", href: "#register" },
@@ -417,7 +417,7 @@ export const getInvolved = {
     {
       id: "sponsors",
       title: "For Sponsors",
-      body: "Support Southeast Asian students in developing leadership and communication skills that will shape their futures.",
+      body: "Fund competitions, scholarships and new workshops for students in Southeast Asia.",
       links: [
         { label: "Download Sponsorship Package", href: PLACEHOLDER_PDF },
         { label: "Schedule a Meeting", href: "/contact" },
@@ -427,7 +427,7 @@ export const getInvolved = {
     {
       id: "resources",
       title: "Free Resources",
-      body: "Download competition materials, training guides, and sample ballots to improve your speaking and judging skills.",
+      body: "Free slides, training guides and sample ballots for speakers and judges.",
       links: [
         { label: "Browse All Resources", href: "#resources" },
         { label: "Event Outreach Slides", href: PLACEHOLDER_PDF },
@@ -437,7 +437,7 @@ export const getInvolved = {
   ],
   registration: {
     title: "Workshop Registration",
-    subtitle: "Join our upcoming public speaking workshops and training sessions",
+    subtitle: "Sign up for an upcoming workshop or training session",
     programOptions: [
       "Public Speaking Fundamentals",
       "Advanced Speech Writing",
@@ -449,10 +449,10 @@ export const getInvolved = {
   sponsor: {
     title: "Sponsor Our Mission",
     subtitle:
-      "Your support helps us provide world-class speech education to students who might not otherwise have access to these opportunities.",
+      "Sponsorship pays for students who couldn't otherwise afford our programs.",
     options: [
-      { title: "Tournament Sponsorship", body: "Support our flagship competitions and get brand visibility" },
-      { title: "Scholarship Fund", body: "Help talented students access our programs regardless of financial means" },
+      { title: "Tournament Sponsorship", body: "Back a competition and have your brand seen at the event" },
+      { title: "Scholarship Fund", body: "Cover program fees for students who can't pay them" },
       { title: "Program Development", body: "Fund new workshops and expand to more schools" },
     ],
     impactTitle: "Sponsorship Impact",
@@ -467,11 +467,11 @@ export const getInvolved = {
   },
   resources: {
     title: "Free Resources",
-    subtitle: "Download guides and materials to enhance your speaking skills",
+    subtitle: "Guides and materials you can download for free",
     items: [
       {
         title: "2025 Event Outreach Slides",
-        body: "Comprehensive event information and outreach materials for our 2025 programs.",
+        body: "Event information and outreach slides for our 2025 programs.",
       },
       { title: "Impromptu Sample Ballots", body: "Sample ballots and judging criteria for impromptu speaking events." },
       { title: "Interpretive Speech Training Slides", body: "Training materials for interpretive speech performance." },
@@ -482,15 +482,15 @@ export const getInvolved = {
 
 export const contactPage = {
   title: "Contact Us",
-  subtitle: "We'd love to hear from you. Reach out with any questions or inquiries.",
+  subtitle: "Questions about programs, partnerships or sponsorship? Send us a message.",
   formTitle: "Send Us a Message",
   purposes: ["Student Inquiry", "School Partnership", "Sponsorship", "Media & Press", "General Question"],
   formNote: "We typically respond within 24-48 hours",
   touchTitle: "Get in Touch",
   touchBody:
-    "Whether you're a student interested in our programs, a school looking to partner, or a potential sponsor, we're here to help.",
+    "Students, schools and sponsors can all reach us here.",
   faqTitle: "Frequently Asked Questions",
-  faqSubtitle: "Find quick answers to common questions",
+  faqSubtitle: "Answers to what people ask us most",
   faq: [
     {
       group: "For Students",

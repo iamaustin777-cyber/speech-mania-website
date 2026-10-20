@@ -151,7 +151,7 @@ export default function ProgramsPage() {
                   <p className="heading mt-2 text-xl sm:text-2xl">{r.name}</p>
                 </div>
                 <div
-                  className={`relative flex flex-col items-center justify-start rounded-t-2xl border-x border-t pt-6 ${
+                  className={`relative flex flex-col items-center justify-start overflow-hidden rounded-t-2xl border-x border-t pt-6 ${
                     winner
                       ? "h-64 border-gold/60 bg-gradient-to-b from-gold/25 to-gold/[0.02] shadow-[0_-30px_80px_-20px_rgb(255_210_122/0.45)] md:h-80"
                       : "h-40 border-ink/15 bg-gradient-to-b from-ink/10 to-transparent md:h-52"

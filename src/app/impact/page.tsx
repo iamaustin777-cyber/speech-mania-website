@@ -40,6 +40,7 @@ export default function ImpactPage() {
                   className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-48 w-full -translate-y-1/2 opacity-[0.12]"
                   color={i % 2 ? "#ffd27a" : "#d7262e"}
                   count={90}
+                  still
                 />
                 <div className={`flex flex-col gap-5 ${i % 2 ? "lg:order-last" : ""}`}>
                   <div className="relative aspect-square w-40 overflow-hidden rounded-2xl lg:w-full">

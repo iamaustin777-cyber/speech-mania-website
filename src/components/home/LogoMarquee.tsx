@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PauseOffscreen } from "@/components/PauseOffscreen";
 import { home } from "@/lib/content";
 
 function Logos({ hidden = false }: { hidden?: boolean }) {
@@ -30,12 +31,12 @@ export function LogoMarquee() {
       <h2 id="trusted-title" className="meta mb-8 text-center">
         Trusted By
       </h2>
-      <div className="marquee relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
+      <PauseOffscreen className="marquee relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
         <div className="marquee-track flex w-max">
           <Logos />
           <Logos hidden />
         </div>
-      </div>
+      </PauseOffscreen>
     </section>
   );
 }

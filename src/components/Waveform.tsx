@@ -1,12 +1,16 @@
+"use client";
+
 import type { CSSProperties } from "react";
+import { usePauseOffscreen } from "./PauseOffscreen";
 
 // Audio-waveform motif. "bars" pulses like a live mic level meter;
 // "line" is a slow scrolling sine used as a section divider.
+// Both animate only transform (compositor-only) and pause while off-screen.
 
-type BarsProps = { variant?: "bars"; count?: number; className?: string; color?: string; style?: CSSProperties };
+type BarsProps = { variant?: "bars"; count?: number; className?: string; color?: string; still?: boolean; style?: CSSProperties };
 type LineProps = { variant: "line"; className?: string; color?: string; speed?: string };
 
-// Deterministic pseudo-random heights so server and client render the same SVG.
+// Deterministic pseudo-random heights so server and client render the same bars.
 function heightAt(i: number, count: number) {
   const env = Math.sin((i / (count - 1)) * Math.PI);
   const jitter = (Math.sin(i * 12.9898) * 43758.5453) % 1;
@@ -15,35 +19,27 @@ function heightAt(i: number, count: number) {
 
 export function Waveform(props: BarsProps | LineProps) {
   if (props.variant === "line") return <WaveLine {...props} />;
-  const { count = 56, className = "", color = "currentColor", style } = props;
-  const gap = 4;
-  const w = 3;
-  const width = count * (w + gap);
+  return <WaveBars {...props} />;
+}
+
+function WaveBars({ count = 56, className = "", color = "currentColor", still = false, style }: BarsProps) {
+  const ref = usePauseOffscreen<HTMLDivElement>();
   return (
-    <svg
-      aria-hidden
-      viewBox={`0 0 ${width} 60`}
-      preserveAspectRatio="none"
-      className={className}
-      style={style}
-    >
-      {Array.from({ length: count }, (_, i) => {
-        const h = heightAt(i, count) * 60;
-        return (
-          <rect
-            key={i}
-            className="wave-bar"
-            x={i * (w + gap)}
-            y={30 - h / 2}
-            width={w}
-            height={h}
-            rx={1.5}
-            fill={color}
-            style={{ animationDelay: `${-((i * 137) % 1100)}ms`, animationDuration: `${900 + ((i * 53) % 700)}ms` }}
-          />
-        );
-      })}
-    </svg>
+    <div ref={ref} aria-hidden className={`flex items-center gap-[3px] ${className}`} style={style}>
+      {Array.from({ length: count }, (_, i) => (
+        <span
+          key={i}
+          className={`block h-full min-w-0 flex-1 rounded-full ${still ? "" : "wave-bar"}`}
+          style={{
+            background: color,
+            transform: still ? `scaleY(${heightAt(i, count).toFixed(3)})` : undefined,
+            maxHeight: still ? undefined : `${(heightAt(i, count) * 100).toFixed(1)}%`,
+            animationDelay: still ? undefined : `${-((i * 137) % 1100)}ms`,
+            animationDuration: still ? undefined : `${900 + ((i * 53) % 700)}ms`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -57,9 +53,10 @@ function sinePath(amp: number, freq: number, phase: number, width = 2400, height
 }
 
 function WaveLine({ className = "", color = "var(--color-red)", speed = "14s" }: LineProps) {
-  // Path is 2x wide and loops by translating -50%; frequencies are integers so it tiles.
+  const ref = usePauseOffscreen<HTMLDivElement>();
+  // Path is 2x wide and loops by translating -50%; frequencies are even so it tiles.
   return (
-    <div aria-hidden className={`relative h-14 overflow-hidden ${className}`}>
+    <div ref={ref} aria-hidden className={`relative h-14 overflow-hidden ${className}`}>
       <svg
         className="wave-line absolute inset-y-0 left-0 h-full w-[200%]"
         style={{ ["--speed" as string]: speed }}

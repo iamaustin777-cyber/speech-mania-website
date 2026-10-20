@@ -72,9 +72,9 @@ export function PathPicker() {
             id={`panel-${p.id}`}
             aria-labelledby={`tab-${p.id}`}
             tabIndex={0}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, transform: "translateY(10px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            exit={{ opacity: 0, transform: "translateY(-6px)" }}
             transition={{ duration: 0.35 }}
             className="glass grid gap-8 rounded-2xl p-7 sm:p-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center"
           >
