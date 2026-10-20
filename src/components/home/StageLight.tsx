@@ -86,7 +86,7 @@ void main() {
   float t = uTime;
   float haze = fbm(qa * vec2(2.2, 1.4) + vec2(t * 0.025, -t * 0.06));
   haze = smoothstep(0.25, 0.85, haze);
-  col += warm * beam * (0.02 + haze * 0.16);
+  col += warm * beam * (0.012 + haze * 0.12);
 
   // --- dust motes: only visible where the beam hits them
   float dust = 0.0;
@@ -105,7 +105,7 @@ void main() {
 
   // --- lamp bloom at the top of the frame
   float ld = length(qa - lamp);
-  col += warm * uIntro * (exp(-ld * 14.0) * 2.2 + exp(-ld * 4.0) * 0.18 + exp(-ld * 1.4) * 0.04);
+  col += warm * uIntro * (exp(-ld * 16.0) * 1.6 + exp(-ld * 6.0) * 0.05);
 
   // --- velvet curtains at the edges, lit only by spill
   float cw = 0.05 + 0.02 / aspect;
@@ -119,6 +119,7 @@ void main() {
   float vig = smoothstep(1.25, 0.25, length((q - vec2(0.55, 0.45)) * vec2(1.0, 1.25)));
   col *= mix(0.45, 1.0, vig);
   col = aces(col * 1.15);
+  col = max(col - 0.004, 0.0); // black point: the dark room stays black
   col = pow(col, vec3(1.0 / 2.2));
 
   // --- film grain: new pattern 24 times a second, strongest in the mid-tones
