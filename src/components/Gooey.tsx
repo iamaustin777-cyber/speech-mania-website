@@ -1,13 +1,13 @@
 "use client";
 
-// GooeyNav / GooeyButton — from React Bits (https://reactbits.dev), via the GDG DVC site.
+// GooeyNav — from React Bits (https://reactbits.dev), via the GDG DVC site.
 // Changes for this site: TypeScript, Next.js <Link> routing, the active pill follows the
 // current route, particle colors use the Speech Mania palette (--color-1..4), and bursts
 // are skipped for reduced motion. The goo merge is an SVG alpha filter (<GooeyDefs />).
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const noise = (n = 1) => n / 2 - Math.random() * n;
 const getXY = (distance: number, i: number, total: number): [number, number] => {
@@ -138,55 +138,5 @@ export function GooeyNav({ items, label = "Main" }: { items: NavItem[]; label?: 
       <span className="effect filter" ref={filterRef} aria-hidden />
       <span className="effect text" ref={textRef} aria-hidden />
     </div>
-  );
-}
-
-/**
- * Single-button version. "solid" is always filled and bursts on hover/click;
- * "ghost" is text only until hover, when the pill bubbles in.
- */
-export function GooeyButton({
-  href,
-  variant = "solid",
-  tone = "red",
-  size = "md",
-  className = "",
-  children,
-  onClick,
-  ...rest
-}: {
-  href: string;
-  variant?: "solid" | "ghost";
-  tone?: "red" | "light";
-  size?: "sm" | "md";
-  className?: string;
-  children: ReactNode;
-} & Omit<ComponentProps<typeof Link>, "href" | "className" | "children">) {
-  const fxRef = useRef<HTMLSpanElement>(null);
-  const [hover, setHover] = useState(false);
-  const on = variant === "solid" || hover;
-  const pop = () => fxRef.current && burst(fxRef.current, { count: 12, dist: [70, 8] });
-  return (
-    <span className={`gooey-btn gooey-btn--${tone} gooey-btn--${size} ${on ? "is-on" : ""} ${className}`}>
-      <span className="gooey-btn__effect" ref={fxRef} aria-hidden />
-      <Link
-        href={href}
-        className="gooey-btn__label"
-        onMouseEnter={() => {
-          setHover(true);
-          pop();
-        }}
-        onMouseLeave={() => setHover(false)}
-        onFocus={() => setHover(true)}
-        onBlur={() => setHover(false)}
-        onClick={(e) => {
-          pop();
-          onClick?.(e);
-        }}
-        {...rest}
-      >
-        {children}
-      </Link>
-    </span>
   );
 }

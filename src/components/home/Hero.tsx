@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GooeyButton } from "@/components/Gooey";
+import { Cta } from "@/components/Cta";
 import { ArrowIcon } from "@/components/Icons";
 import { Waveform } from "@/components/Waveform";
 import { home, images, REGISTER_HREF } from "@/lib/content";
@@ -74,11 +74,11 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
 
           <div className="fade-up mt-6" style={{ ["--d" as string]: "2.1s" }}>
             <p className="max-w-[46ch] text-lg leading-relaxed text-ink/85">{body}</p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <GooeyButton href={REGISTER_HREF}>Join a Workshop</GooeyButton>
-              <GooeyButton href="/programs" variant="ghost" tone="light">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Cta href={REGISTER_HREF}>Join a Workshop</Cta>
+              <Cta href="/programs" variant="link">
                 Explore Programs
-              </GooeyButton>
+              </Cta>
             </div>
           </div>
         </div>

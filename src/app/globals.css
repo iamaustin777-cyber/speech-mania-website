@@ -32,6 +32,9 @@ html {
 body {
   /* transparent so the auditorium canvas (fixed, behind everything) shows through */
   background: transparent;
+  /* light text on a dark stage: a hair more tracking and leading than on paper */
+  letter-spacing: 0.006em;
+  line-height: 1.6;
   color: var(--color-mute);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -53,10 +56,11 @@ body {
   /* Big statement type for the stage moments (hero line, scoreboard, ticket, mic CTA). */
   .display {
     font-family: var(--font-display);
-    letter-spacing: -0.055em;
-    line-height: 0.95;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
     color: var(--color-ink);
-    font-weight: 500;
+    font-weight: 400;
+    font-kerning: normal;
   }
 
   /* Everyday headings: plain sans, sentence weight, tight tracking. */
@@ -319,7 +323,7 @@ body {
 .es__more { margin-left: 0.5rem; white-space: nowrap; color: var(--p); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--p) 40%, transparent); }
 @keyframes es-swap { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
 
-/* ---------- Gooey nav + buttons (React Bits, via GDG DVC) ---------- */
+/* ---------- Gooey nav (React Bits, via GDG DVC) ---------- */
 :root {
   --color-1: #d7262e;
   --color-2: #e7dfd3;
@@ -368,8 +372,7 @@ body {
 .gooey-nav .effect.text { color: var(--color-ink); transition: color 0.3s ease; }
 .gooey-nav .effect.text.active { color: var(--color-void); }
 .gooey-nav .effect.filter { filter: url(#gooey-goo); }
-.gooey-nav .effect.filter::after,
-.gooey-btn__effect::after {
+.gooey-nav .effect.filter::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -414,43 +417,7 @@ body {
   100% { transform: scale(0); opacity: 0; }
 }
 
-.gooey-btn { --gb-bg: var(--color-red); --gb-fg: var(--color-ink); position: relative; isolation: isolate; display: inline-flex; }
-.gooey-btn--light { --gb-bg: var(--color-ink); --gb-fg: var(--color-void); }
-.gooey-btn__label {
-  position: relative;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  padding: 0.7em 1.15em;
-  border-radius: 10px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1.2;
-  white-space: nowrap;
-  color: var(--color-ink);
-  transition: color 0.3s ease, box-shadow 0.3s ease;
-}
-.gooey-btn--sm .gooey-btn__label { padding: 0.55em 0.95em; font-size: 0.875rem; }
-.gooey-btn__label::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: 10px;
-  background: var(--gb-bg);
-  opacity: 0;
-  transform: scale(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.gooey-btn:not(.is-on) .gooey-btn__label { box-shadow: inset 0 0 0 1px rgb(245 243 238 / 0.18); }
-.gooey-btn.is-on .gooey-btn__label { color: var(--gb-fg); }
-.gooey-btn.is-on .gooey-btn__label::after { opacity: 1; transform: scale(1); }
-.gooey-btn__label:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
-.gooey-btn__effect { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; pointer-events: none; filter: url(#gooey-goo); }
-.gooey-btn__effect::after { background: var(--gb-bg); }
-.gooey-btn.is-on .gooey-btn__effect.active::after { animation: goo-pill 0.3s ease both; }
+
 
 /* ---------- Scoreboard cells ---------- */
 .sb-cell { isolation: isolate; }
@@ -472,3 +439,72 @@ body {
 
 /* Mic mode: bars follow the voice (JS sets scaleY), so the idle pulse stops. */
 .wave-live .wave-bar { animation: none; max-height: 100% !important; transform: scaleY(0.12); transition: transform 60ms linear; }
+
+/* ---------- Call-to-action links ---------- */
+.cta-primary {
+  --cta-h: 3.25rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  height: var(--cta-h);
+  padding: 0 0.4rem 0 1.5rem;
+  border-radius: 999px;
+  background: var(--color-red);
+  color: var(--color-ink);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 10px 30px -12px rgb(215 38 46 / 0.7);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.cta-primary--sm { --cta-h: 2.5rem; gap: 0.6rem; padding-left: 1.05rem; font-size: 0.875rem; }
+.cta-primary:hover { background: #e3343c; }
+.cta-primary:active { transform: scale(0.98); }
+.cta-primary:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+.cta-primary__badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(var(--cta-h) - 0.8rem);
+  height: calc(var(--cta-h) - 0.8rem);
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(10 10 11 / 0.22);
+}
+.cta-primary__arrow {
+  grid-area: 1 / 1;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.cta-primary--sm .cta-primary__arrow { width: 0.8rem; height: 0.8rem; }
+.cta-primary__arrow--next { transform: translateX(-180%); }
+.cta-primary:hover .cta-primary__arrow { transform: translateX(180%); }
+.cta-primary:hover .cta-primary__arrow--next { transform: translateX(0); }
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3.25rem;
+  padding: 0 0.25rem;
+  color: var(--color-ink);
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cta-link__text {
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.cta-link:hover .cta-link__text,
+.cta-link:focus-visible .cta-link__text { background-size: 100% 1px; }
+.cta-link__arrow { width: 1rem; height: 1rem; color: var(--color-mute); transition: transform 0.35s ease, color 0.35s ease; }
+.cta-link:hover .cta-link__arrow { transform: translateX(4px); color: var(--color-ink); }
+.cta-link:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .cta-primary__arrow, .cta-link__text, .cta-link__arrow { transition: none; }
+}

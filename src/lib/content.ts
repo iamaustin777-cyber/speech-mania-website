@@ -110,8 +110,8 @@ export type Stat = { value: number; suffix?: string; label: string };
 
 export const home = {
   hero: {
-    line1: "Find Your Voice.",
-    line2: "Shape Your Future.",
+    line1: "Find your voice.",
+    line2: "Shape your future.",
     body: "A youth-led group running public speaking competitions, workshops and Thailand's national team, for students across Southeast Asia.",
     // Most recent competition and results, shown on the first screen.
     recent: [

@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { GooeyButton, GooeyNav } from "./Gooey";
+import { Cta } from "./Cta";
+import { GooeyNav } from "./Gooey";
 import { images, nav, REGISTER_HREF } from "@/lib/content";
 
 export function Navbar() {
@@ -86,9 +87,9 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <GooeyButton href={REGISTER_HREF} size="sm" className="hidden sm:inline-flex">
+            <Cta href={REGISTER_HREF} size="sm" className="hidden sm:inline-flex">
               Register
-            </GooeyButton>
+            </Cta>
             <button
               ref={toggleRef}
               type="button"
