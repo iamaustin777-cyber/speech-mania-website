@@ -20,8 +20,8 @@ export const images = {
   hero: {
     src: "/images/hero-obama-cairo-2009.jpg",
     alt: "Barack Obama speaking at Cairo University, 2009",
-    w: 2400,
-    h: 1600,
+    w: 3200,
+    h: 2134,
     focus: [0.476, 0.62] as [number, number],
     frame: {
       desktop: { zoom: 1.7, anchor: [0.72, 0.42] as [number, number] },

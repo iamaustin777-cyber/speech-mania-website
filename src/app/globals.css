@@ -142,7 +142,7 @@ body {
   inset: -128px;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.045;
   background: url("/images/grain.png") repeat;
   background-size: 256px 256px;
   animation: grain 0.333s steps(1) infinite;

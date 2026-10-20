@@ -43,7 +43,7 @@ float noise(vec2 p) {
 }
 float fbm(vec2 p) {
   float v = 0.0, a = 0.5;
-  for (int i = 0; i < 4; i++) { v += a * noise(p); p = p * 2.03 + 17.1; a *= 0.5; }
+  for (int i = 0; i < 3; i++) { v += a * noise(p); p = p * 2.03 + 17.1; a *= 0.5; }
   return v;
 }
 vec3 toLinear(vec3 c) { return pow(c, vec3(2.2)); }
@@ -86,7 +86,7 @@ void main() {
   float t = uTime;
   float haze = fbm(qa * vec2(2.2, 1.4) + vec2(t * 0.025, -t * 0.06));
   haze = smoothstep(0.25, 0.85, haze);
-  col += warm * beam * (0.035 + haze * 0.32);
+  col += warm * beam * (0.02 + haze * 0.16);
 
   // --- dust motes: only visible where the beam hits them
   float dust = 0.0;
@@ -101,7 +101,7 @@ void main() {
     float twinkle = 0.6 + 0.4 * sin(t * (1.5 + h * 3.0) + h * 40.0);
     dust += step(0.86, h) * smoothstep(size, 0.0, length(f - o * 0.7)) * twinkle;
   }
-  col += warm * dust * beam * 0.9;
+  col += warm * dust * beam * 0.4;
 
   // --- lamp bloom at the top of the frame
   float ld = length(qa - lamp);
@@ -125,7 +125,7 @@ void main() {
   float frame = floor(t * 24.0);
   float lum = dot(col, vec3(0.299, 0.587, 0.114));
   float grain = hash(gl_FragCoord.xy + frame * 13.17) - 0.5;
-  col += grain * mix(0.07, 0.035, lum);
+  col += grain * mix(0.01, 0.005, lum); // barely-there grain, just enough to avoid banding
 
   gl_FragColor = vec4(col, 1.0);
 }`;
@@ -193,8 +193,9 @@ export function StageLight({ src, imgW, imgH, focus, frame = DEFAULT_FRAME, clas
     // (right half on desktop, upper third on mobile), clamped so no edge shows.
     const layout = () => {
       const mobile = canvas.clientWidth < 768;
-      // Lower internal resolution keeps the shader cheap; grain hides the softness.
-      const scale = Math.min(window.devicePixelRatio || 1, 1) * (mobile ? 0.55 : 0.7);
+      // Render close to the real device resolution so the photo stays sharp on Retina;
+      // phones get a little less to keep the frame rate up.
+      const scale = Math.min(window.devicePixelRatio || 1, 2) * (mobile ? 0.8 : 0.95);
       canvas.width = Math.max(1, Math.round(canvas.clientWidth * scale));
       canvas.height = Math.max(1, Math.round(canvas.clientHeight * scale));
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -241,8 +242,14 @@ export function StageLight({ src, imgW, imgH, focus, frame = DEFAULT_FRAME, clas
       gl.uniform1f(uLampX, lampX);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     };
+    // ~30 fps is plenty: grain changes 24x a second and the haze drifts slowly,
+    // and it halves the GPU work now that we render at full Retina resolution.
+    let lastDraw = 0;
     const loop = (now: number) => {
-      draw(now);
+      if (now - lastDraw >= 31) {
+        lastDraw = now;
+        draw(now);
+      }
       raf = running ? requestAnimationFrame(loop) : 0;
     };
     const play = () => {
