@@ -1,5 +1,7 @@
 # Speech Mania — Find Your Voice
 
+**Live site:** https://speech-mania-website-ruby.vercel.app
+
 Website for **Speech Mania**, a youth-led public speaking organization empowering students across Thailand and Southeast Asia through competitions, workshops and national team management.
 
 The design concept is *"you just walked onto a stage"*: a dark auditorium, a warm spotlight, sound-wave motifs, a scoreboard for the impact numbers and a concert-ticket feature for TIPSC 2025.
