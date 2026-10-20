@@ -106,7 +106,8 @@ export const footer = {
 };
 
 // A stat: numeric value is animated, suffix is appended as-is.
-export type Stat = { value: number; suffix?: string; label: string };
+export type StatIcon = "school" | "globe" | "money" | "partners" | "students" | "trophy" | "heart" | "workshop";
+export type Stat = { value: number; suffix?: string; label: string; icon?: StatIcon };
 
 export const home = {
   hero: {
@@ -137,11 +138,11 @@ export const home = {
     title: "Our Impact",
     subtitle: "What we've done so far across Southeast Asia",
     stats: [
-      { value: 35, suffix: "+", label: "Schools Impacted" },
-      { value: 3, label: "Countries" },
-      { value: 500, suffix: "K", label: "THB Raised" },
+      { value: 35, suffix: "+", label: "Schools Impacted", icon: "school" },
+      { value: 3, label: "Countries", icon: "globe" },
+      { value: 500, suffix: "K", label: "THB Raised", icon: "money" },
       // TODO: confirm — the old site showed no number here; 5 = the five "Trusted By" logos.
-      { value: 5, label: "Partner Organizations" },
+      { value: 5, label: "Partner Organizations", icon: "partners" },
     ] as Stat[],
   },
   why: {
@@ -382,13 +383,13 @@ export const impact = {
   numbersTitle: "By the Numbers",
   numbersSubtitle: "Across Thailand and Southeast Asia",
   stats: [
-    { value: 35, suffix: "+", label: "Schools Impacted" },
-    { value: 3, label: "Countries Reached" },
-    { value: 500, suffix: "+", label: "Students Impacted" },
-    { value: 10, label: "National Champions Trained" },
-    { value: 95, suffix: "%", label: "Student Satisfaction Rate" },
-    { value: 10, label: "Workshops Delivered" },
-    { value: 500, suffix: "K THB", label: "Raised" },
+    { value: 35, suffix: "+", label: "Schools Impacted", icon: "school" },
+    { value: 3, label: "Countries Reached", icon: "globe" },
+    { value: 500, suffix: "+", label: "Students Impacted", icon: "students" },
+    { value: 10, label: "National Champions Trained", icon: "trophy" },
+    { value: 95, suffix: "%", label: "Student Satisfaction Rate", icon: "heart" },
+    { value: 10, label: "Workshops Delivered", icon: "workshop" },
+    { value: 500, suffix: "K THB", label: "Raised", icon: "money" },
   ] as Stat[],
   storiesTitle: "Success Stories",
   storiesSubtitle: "Two students on what Speech Mania meant for them",

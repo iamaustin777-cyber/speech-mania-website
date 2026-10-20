@@ -2,7 +2,39 @@
 
 import { useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import type { Stat } from "@/lib/content";
+import {
+  ChalkboardTeacher,
+  GlobeHemisphereEast,
+  GraduationCap,
+  HandCoins,
+  Handshake,
+  HeartStraight,
+  Student,
+  Trophy,
+} from "@phosphor-icons/react/dist/ssr";
+import type { Stat, StatIcon } from "@/lib/content";
+
+const ICONS: Record<StatIcon, typeof Student> = {
+  school: GraduationCap,
+  globe: GlobeHemisphereEast,
+  money: HandCoins,
+  partners: Handshake,
+  students: Student,
+  trophy: Trophy,
+  heart: HeartStraight,
+  workshop: ChalkboardTeacher,
+};
+
+/** Brand-navy icon tile (from the logo); turns red and the glyph bobs on hover. */
+function IconTile({ icon }: { icon?: StatIcon }) {
+  if (!icon) return null;
+  const Glyph = ICONS[icon];
+  return (
+    <span aria-hidden className="stat-tile">
+      <Glyph weight="regular" className="stat-tile__glyph" />
+    </span>
+  );
+}
 
 /**
  * Impact numbers in an open row (no boxes). Digits roll like an odometer, a row of small
@@ -143,6 +175,7 @@ function GridCell({ stat, index, big }: { stat: Stat; index: number; big: boolea
       />
       <dt className="meta order-last mt-auto uppercase tracking-[0.14em] transition-colors duration-300 group-hover:text-ink">{stat.label}</dt>
       <dd className="flex flex-col gap-6">
+        <IconTile icon={stat.icon} />
         <StatNumber
           stat={stat}
           rolled={rolled}

@@ -435,3 +435,41 @@ svg,
 a {
   -webkit-user-drag: none;
 }
+
+/* Native selects ignore padding in Safari: match the text inputs and draw our own chevron. */
+select.field {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 3.1rem;
+  padding-right: 2.75rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 256 256'%3E%3Cpath fill='none' stroke='%23a8a29e' stroke-linecap='round' stroke-linejoin='round' stroke-width='20' d='m208 96-80 80-80-80'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+input.field { min-height: 3.1rem; }
+
+/* ---------- Stat icon tiles (brand navy from the logo) ---------- */
+.stat-tile {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 0.9rem;
+  color: var(--color-ink);
+  background: linear-gradient(160deg, #0a4a9c 0%, #043474 55%, #032657 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), inset 0 -1px 0 rgb(0 0 0 / 0.3), 0 12px 28px -14px rgb(4 52 116 / 0.9);
+  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stat-tile__glyph { width: 1.6rem; height: 1.6rem; }
+.group:hover .stat-tile {
+  background: linear-gradient(160deg, #ee3d45 0%, #d7262e 55%, #a9161d 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 -1px 0 rgb(0 0 0 / 0.25), 0 14px 30px -12px rgb(215 38 46 / 0.75);
+  transform: translateY(-2px);
+}
+.group:hover .stat-tile__glyph { animation: tile-bob 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes tile-bob {
+  0% { transform: translateY(0) rotate(0); }
+  35% { transform: translateY(-3px) rotate(-8deg); }
+  70% { transform: translateY(1px) rotate(4deg); }
+  100% { transform: none; }
+}

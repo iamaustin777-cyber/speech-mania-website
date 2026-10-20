@@ -30,15 +30,19 @@ export function SectionHeading({
       </Reveal>
     );
   }
+  // Split into two columns only when the heading's own container is wide enough
+  // (container query, not viewport), so it never collides when placed in a narrow column.
   return (
-    <Reveal className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)] lg:items-end lg:gap-12">
-      <div>
-        {eyebrow && <p className="eyebrow mb-5">{eyebrow}</p>}
-        <H id={id} className="heading max-w-[16ch] text-[clamp(2.75rem,5vw,5.75rem)]">
-          {title}
-        </H>
-      </div>
-      {subtitle && <p className="text-lg leading-relaxed text-mute lg:pb-2">{subtitle}</p>}
-    </Reveal>
+    <div className="@container">
+      <Reveal className="grid gap-6 @4xl:grid-cols-[minmax(0,1fr)_minmax(0,25rem)] @4xl:items-end @4xl:gap-12">
+        <div>
+          {eyebrow && <p className="eyebrow mb-5">{eyebrow}</p>}
+          <H id={id} className="heading text-[clamp(2.75rem,5vw,5.75rem)] @4xl:max-w-[16ch]">
+            {title}
+          </H>
+        </div>
+        {subtitle && <p className="max-w-[56ch] text-lg leading-relaxed text-mute @4xl:pb-2">{subtitle}</p>}
+      </Reveal>
+    </div>
   );
 }
