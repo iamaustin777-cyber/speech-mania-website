@@ -23,7 +23,7 @@ export default function HomePage() {
       <section aria-labelledby="impact-title" className="relative mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <SectionHeading id="impact-title" title={home.impact.title} subtitle={home.impact.subtitle} />
         <div className="mt-14">
-          <Scoreboard stats={home.impact.stats} layout="feature" sentence={home.impact.sentence} />
+          <Scoreboard stats={home.impact.stats} />
         </div>
       </section>
 

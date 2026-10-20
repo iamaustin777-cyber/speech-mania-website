@@ -73,7 +73,9 @@ export function Auditorium() {
         // rows further back (lower on screen) fade a little, like seats receding into the dark
         const a = 0.17 - (y / H) * 0.06;
         b.fillStyle = `rgba(244,242,238,${a.toFixed(3)})`;
-        b.fillRect(seats[i] - 1, y - 1, 2, 2);
+        b.beginPath();
+        b.arc(seats[i], y, 1, 0, Math.PI * 2);
+        b.fill();
       }
       draw();
     };
@@ -88,8 +90,9 @@ export function Auditorium() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       // soft pool of light on the floor
       const g = ctx.createRadialGradient(mx, my, 0, mx, my, LIGHT * 1.3);
-      g.addColorStop(0, "rgba(231,223,211,0.07)");
-      g.addColorStop(1, "rgba(231,223,211,0)");
+      g.addColorStop(0, "rgba(215,38,46,0.10)");
+      g.addColorStop(0.55, "rgba(215,38,46,0.035)");
+      g.addColorStop(1, "rgba(215,38,46,0)");
       ctx.fillStyle = g;
       ctx.fillRect(mx - LIGHT * 1.3, my - LIGHT * 1.3, LIGHT * 2.6, LIGHT * 2.6);
       // seats inside the light glow warm
@@ -99,9 +102,22 @@ export function Auditorium() {
         const d2 = dx * dx + dy * dy;
         if (d2 > LIGHT * LIGHT) continue;
         const k = 1 - Math.sqrt(d2) / LIGHT;
-        const s = 2 + k * 1.6;
-        ctx.fillStyle = `rgba(${Math.round(236 + 14 * k)},${Math.round(228 + 14 * k)},${Math.round(214 + 16 * k)},${(0.12 + k * 0.75).toFixed(3)})`;
-        ctx.fillRect(seats[i] - s / 2, seats[i + 1] - s / 2, s, s);
+        const s = 2 + k * 1.4;
+        // deep red at the edge of the light, warming to a soft rose at its centre
+        const r = Math.round(200 + 55 * k);
+        const gc = Math.round(40 + 90 * k * k);
+        const bc = Math.round(48 + 80 * k * k);
+        ctx.fillStyle = `rgba(${r},${gc},${bc},${(0.18 + k * 0.72).toFixed(3)})`;
+        ctx.beginPath();
+        ctx.arc(seats[i], seats[i + 1], s / 2, 0, Math.PI * 2);
+        ctx.fill();
+        if (k > 0.35) {
+          // soft halo on the brightest seats
+          ctx.fillStyle = `rgba(215,38,46,${(0.12 * k).toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(seats[i], seats[i + 1], s * 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
     };
 
