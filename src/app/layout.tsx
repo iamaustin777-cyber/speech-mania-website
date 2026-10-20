@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Auditorium } from "@/components/Auditorium";
 import { Footer } from "@/components/Footer";
-import { GooeyDefs } from "@/components/Gooey";
 import { Navbar } from "@/components/Navbar";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
@@ -46,7 +45,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main id="main">{children}</main>
           <Footer />
         </Providers>
-        <GooeyDefs />
         <div aria-hidden className="grain" />
       </body>
     </html>

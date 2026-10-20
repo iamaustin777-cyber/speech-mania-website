@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Cta } from "./Cta";
-import { GooeyNav } from "./Gooey";
+import { NavPills } from "./NavPills";
 import { images, nav, REGISTER_HREF } from "@/lib/content";
 
 export function Navbar() {
@@ -83,7 +83,7 @@ export function Navbar() {
           </Link>
 
           <div className="hidden lg:block">
-            <GooeyNav items={nav} />
+            <NavPills items={nav} />
           </div>
 
           <div className="flex items-center gap-3">

@@ -177,9 +177,9 @@ function WaveBars({ count = 56, className = "", color = "currentColor", still = 
 /* ------------------------------------------------------------------ line */
 
 const STRINGS = [
-  { amp: 9, freq: 6, phase: 0, speed: 0.55, width: 1.6, alpha: 0.95, tone: "red" },
-  { amp: 6, freq: 9, phase: 1.2, speed: -0.4, width: 1, alpha: 0.5, tone: "accent" },
-  { amp: 4, freq: 13, phase: 2.4, speed: 0.3, width: 1, alpha: 0.22, tone: "ink" },
+  { amp: 12, freq: 5, phase: 0, speed: 2.1, width: 1.7, alpha: 0.95, tone: "red" },
+  { amp: 8, freq: 8, phase: 1.2, speed: -1.6, width: 1.1, alpha: 0.55, tone: "accent" },
+  { amp: 5, freq: 12, phase: 2.4, speed: 1.2, width: 1, alpha: 0.25, tone: "ink" },
 ] as const;
 
 function WaveLine({ className = "", color = "#d7262e" }: LineProps) {
@@ -198,7 +198,7 @@ function WaveLine({ className = "", color = "#d7262e" }: LineProps) {
     let W = 0;
     let H = 0;
     let dpr = 1;
-    const N = 120; // points per string
+    const N = 240; // points per string (smooth enough for the travelling bursts)
     // per-string displacement field: a damped wave equation along the string
     const pos = STRINGS.map(() => new Float32Array(N));
     const vel = STRINGS.map(() => new Float32Array(N));
@@ -227,7 +227,14 @@ function WaveLine({ className = "", color = "#d7262e" }: LineProps) {
           const x = (i / (N - 1)) * W;
           const u = i / (N - 1);
           const env = Math.sin(u * Math.PI); // ends are fixed, like a real string
-          const y = H / 2 + Math.sin(u * Math.PI * 2 * s.freq + s.phase + t * s.speed) * s.amp * env + pos[k][i];
+          // carrier wave that flows along the string, breathing like a voice
+          const breath = 0.55 + 0.45 * Math.sin(t * 1.3 + k * 1.7);
+          let y = H / 2 + Math.sin(u * Math.PI * 2 * s.freq + s.phase + t * s.speed) * s.amp * env * breath;
+          // a spoken "phrase": a burst of energy travelling left to right every few seconds
+          const head = ((t * 0.22 + k * 0.33) % 1.5) - 0.25;
+          const burst = Math.exp(-(((u - head) / 0.09) ** 2));
+          y += Math.sin(u * Math.PI * 2 * s.freq * 2.2 - t * 9 + k) * s.amp * 1.1 * burst * env;
+          y += pos[k][i];
           if (i === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }

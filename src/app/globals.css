@@ -323,99 +323,6 @@ body {
 .es__more { margin-left: 0.5rem; white-space: nowrap; color: var(--p); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--p) 40%, transparent); }
 @keyframes es-swap { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
 
-/* ---------- Gooey nav (React Bits, via GDG DVC) ---------- */
-:root {
-  --color-1: #d7262e;
-  --color-2: #e7dfd3;
-  --color-3: #f5f3ee;
-  --color-4: #ff5a61;
-}
-.gooey-nav { position: relative; }
-.gooey-nav nav { display: flex; position: relative; transform: translate3d(0, 0, 0.01px); }
-.gooey-nav ul { position: relative; z-index: 3; display: flex; gap: 0.15rem; margin: 0; padding: 0; list-style: none; }
-.gooey-nav li {
-  position: relative;
-  border-radius: 10px;
-  color: var(--color-mute);
-  transition: color 0.3s ease, box-shadow 0.3s ease;
-}
-.gooey-nav li:hover { color: var(--color-ink); }
-.gooey-nav li a { display: inline-block; padding: 0.55em 0.95em; font-size: 0.875rem; }
-.gooey-nav li a:focus-visible { outline: none; }
-.gooey-nav li:focus-within:has(:focus-visible) { box-shadow: 0 0 0.5px 1.5px var(--color-ink); }
-.gooey-nav li::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: 10px;
-  background: var(--color-ink);
-  opacity: 0;
-  transform: scale(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.gooey-nav li.active { color: var(--color-void); }
-.gooey-nav li.active::after { opacity: 1; transform: scale(1); }
-.gooey-nav .effect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  font-size: 0.875rem;
-}
-/* The label is redrawn above the pill (the pill paints over the list), dark when active. */
-.gooey-nav .effect.text { color: var(--color-ink); transition: color 0.3s ease; }
-.gooey-nav .effect.text.active { color: var(--color-void); }
-.gooey-nav .effect.filter { filter: url(#gooey-goo); }
-.gooey-nav .effect.filter::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: 100vw;
-  background: var(--color-ink);
-  opacity: 0;
-  transform: scale(0);
-}
-.gooey-nav .effect.active::after { animation: goo-pill 0.3s ease both; }
-@keyframes goo-pill { to { transform: scale(1); opacity: 1; } }
-
-.particle,
-.point {
-  display: block;
-  width: 20px;
-  height: 20px;
-  border-radius: 100%;
-  opacity: 0;
-  transform-origin: center;
-}
-.particle {
-  --time: 5s;
-  position: absolute;
-  top: calc(50% - 8px);
-  left: calc(50% - 8px);
-  animation: goo-particle calc(var(--time)) ease 1 -350ms;
-}
-.point { background: var(--color); opacity: 1; animation: goo-point calc(var(--time)) ease 1 -350ms; }
-@keyframes goo-particle {
-  0% { transform: rotate(0deg) translate(var(--start-x), var(--start-y)); opacity: 1; animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
-  70% { transform: rotate(calc(var(--rotate) * 0.5)) translate(calc(var(--end-x) * 1.2), calc(var(--end-y) * 1.2)); opacity: 1; animation-timing-function: ease; }
-  85% { transform: rotate(calc(var(--rotate) * 0.66)) translate(var(--end-x), var(--end-y)); opacity: 1; }
-  100% { transform: rotate(calc(var(--rotate) * 1.2)) translate(calc(var(--end-x) * 0.5), calc(var(--end-y) * 0.5)); opacity: 1; }
-}
-@keyframes goo-point {
-  0% { transform: scale(0); opacity: 0; animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
-  25% { transform: scale(calc(var(--scale) * 0.25)); }
-  38% { opacity: 1; }
-  65% { transform: scale(var(--scale)); opacity: 1; animation-timing-function: ease; }
-  85% { transform: scale(var(--scale)); opacity: 1; }
-  100% { transform: scale(0); opacity: 0; }
-}
 
 
 
@@ -507,4 +414,24 @@ button:not(:disabled):active,
 [role="button"]:active,
 [role="tab"]:active {
   cursor: grabbing;
+}
+
+/* Like the GDG DVC site: text can't be selected or copied anywhere, images can't be dragged.
+   Form fields stay fully usable. */
+html {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+input,
+textarea,
+select,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+img,
+svg,
+a {
+  -webkit-user-drag: none;
 }
