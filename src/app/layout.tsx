@@ -10,7 +10,10 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "sw
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://speech-mania-website.vercel.app"),
+  // Vercel sets VERCEL_PROJECT_PRODUCTION_URL at build time, so share previews point at the live domain.
+  metadataBase: new URL(
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000",
+  ),
   title: {
     default: "Speech Mania — Find Your Voice",
     template: "Speech Mania | %s",
