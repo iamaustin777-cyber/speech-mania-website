@@ -43,7 +43,7 @@ export default function ImpactPage() {
                 />
                 <div className={`flex flex-col gap-5 ${i % 2 ? "lg:order-last" : ""}`}>
                   <div className="relative aspect-square w-48 overflow-hidden rounded-full border-2 border-gold/50 shadow-[0_0_60px_-10px_rgb(255_210_122/0.4)] lg:w-full">
-                    <Image src={s.img.src} alt={s.img.alt} fill sizes="(min-width:1024px) 18rem, 12rem" className="object-cover" />
+                    <Image src={s.img.src} alt={s.img.alt} fill sizes="(min-width:1024px) 18rem, 12rem" className="object-cover object-[50%_30%]" />
                   </div>
                   <figcaption>
                     <p className="display text-3xl">{s.name}</p>
@@ -100,7 +100,7 @@ export default function ImpactPage() {
       <section aria-labelledby="gallery-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
         <SectionHeading id="gallery-title" eyebrow="Backstage" title={impact.galleryTitle} subtitle={impact.gallerySubtitle} />
         <ul className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-3">
-          {gallery.map((img, i) => (
+          {gallery.map((img) => (
             <li key={img.src} className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-ink/10">
               <Image
                 src={img.src}
@@ -111,9 +111,6 @@ export default function ImpactPage() {
                 className="w-full brightness-75 saturate-[0.85] transition duration-700 ease-stage group-hover:scale-105 group-hover:brightness-100"
               />
               <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/60 to-transparent opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
-              <span aria-hidden className="absolute bottom-3 left-4 font-display text-sm tracking-widest text-ink/60">
-                {String(i + 1).padStart(2, "0")}
-              </span>
             </li>
           ))}
         </ul>

@@ -45,7 +45,7 @@ export default function ProgramsPage() {
             <div className="overflow-hidden rounded-3xl border border-ink/10">
               <Image src={images.competition.src} alt={images.competition.alt} width={images.competition.w} height={images.competition.h} sizes="(min-width:1024px) 45vw, 100vw" className="aspect-[4/5] w-full object-cover" />
             </div>
-            <div aria-hidden className="absolute -inset-x-6 -bottom-10 -z-10 h-40 rounded-full bg-gold/10 blur-3xl" />
+            <div aria-hidden className="absolute inset-x-0 -bottom-10 -z-10 h-40 rounded-full bg-gold/10 blur-3xl" />
           </Reveal>
         </div>
 

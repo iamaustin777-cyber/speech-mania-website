@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Speech Mania — Find Your Voice
 
-## Getting Started
+Website for **Speech Mania**, a youth-led public speaking organization empowering students across Thailand and Southeast Asia through competitions, workshops and national team management.
 
-First, run the development server:
+The design concept is *"you just walked onto a stage"*: a dark auditorium, a warm spotlight, sound-wave motifs, a scoreboard for the impact numbers and a concert-ticket feature for TIPSC 2025.
+
+Built with **Next.js (App Router) · TypeScript · Tailwind CSS · Framer Motion**.
+
+## Run it locally
+
+You need Node.js 18 or newer.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To check a production build: `npm run build` then `npm start`.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repo to GitHub.
+2. On [vercel.com](https://vercel.com), click **Add New → Project** and import the GitHub repo.
+3. Keep the defaults (framework: Next.js) and click **Deploy**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every push to `main` redeploys automatically.
+
+## Where things live
+
+| What | Where |
+| --- | --- |
+| All text content (single source of truth) | `src/lib/content.ts` |
+| Pages | `src/app/*/page.tsx` (`/`, `/about`, `/programs`, `/impact`, `/get-involved`, `/contact`) |
+| Shared components (Spotlight, Waveform, Scoreboard, Ticket, Navbar…) | `src/components/` |
+| Colors, fonts, animations | `src/app/globals.css` |
+| Photos and logos | `public/images/` |
+
+### Optional hero video
+
+Put a muted, looping `hero.mp4` in `public/` and rebuild. The home hero switches from the still photo to the video automatically.
+
+## Still to do (search the code for `TODO`)
+
+- Connect the registration and contact forms to a backend or email service. They currently validate and show a success message only.
+- Add the real PDFs (sponsorship package, outreach slides, sample ballots) and replace the `#` links.
+- Add the real social media links in the footer.
+- Confirm the contact details, the "5 Partner Organizations" number, and the spelling of "Chantaprapab" vs "Chantaraprapab".
+- Add Privacy Policy and Terms of Service pages.
