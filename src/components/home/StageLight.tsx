@@ -31,7 +31,7 @@ uniform vec2 uRes;      // canvas size in px
 uniform float uTime;    // seconds
 uniform float uIntro;   // 0..1 lamp power (fade-in with flicker)
 uniform vec2 uRectMin;  // where the photo sits on screen (uv), top-left
-uniform vec2 uRectSize; // and its size (uv); edges dissolve into the dark
+uniform vec2 uRectSize; // and its size (uv)
 uniform vec2 uTarget;   // where the beam lands, in screen uv
 uniform float uLampX;   // lamp x, in screen uv (follows the mouse a little)
 
@@ -54,12 +54,9 @@ void main() {
   vec2 q = vUv;
   vec2 qa = vec2(q.x * aspect, q.y);           // aspect-corrected for distances
 
-  // --- photo, in linear light, framed like a stage: whole picture, edges fade to black
+  // --- photo, in linear light (it always covers the canvas)
   vec2 imgUv = (q - uRectMin) / uRectSize;
-  float inside = step(0.0, imgUv.x) * step(imgUv.x, 1.0) * step(0.0, imgUv.y) * step(imgUv.y, 1.0);
-  float feather = smoothstep(0.0, 0.16, imgUv.x) * smoothstep(0.0, 0.08, 1.0 - imgUv.x)
-                * smoothstep(0.0, 0.05, imgUv.y) * smoothstep(0.0, 0.22, 1.0 - imgUv.y);
-  vec3 photo = toLinear(texture2D(uTex, clamp(imgUv, 0.0, 1.0)).rgb) * inside * feather;
+  vec3 photo = toLinear(texture2D(uTex, clamp(imgUv, 0.0, 1.0)).rgb);
 
   // --- beam geometry: lamp above the frame, aimed at the target
   vec2 lamp = vec2(uLampX * aspect, -0.06);
@@ -145,12 +142,20 @@ type Props = {
   src: string;
   imgW: number;
   imgH: number;
-  /** Where the subject stands in the photo (0-1). */
+  /** Where the subject's face is in the photo (0-1). */
   focus: [number, number];
+  /** Zoom and where on screen (0-1) the face should land, per breakpoint. */
+  frame?: { desktop: Framing; mobile: Framing };
   className?: string;
 };
+type Framing = { zoom: number; anchor: [number, number] };
 
-export function StageLight({ src, imgW, imgH, focus, className = "" }: Props) {
+const DEFAULT_FRAME = {
+  desktop: { zoom: 1, anchor: [0.72, 0.45] as [number, number] },
+  mobile: { zoom: 1, anchor: [0.5, 0.25] as [number, number] },
+};
+
+export function StageLight({ src, imgW, imgH, focus, frame = DEFAULT_FRAME, className = "" }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -184,8 +189,8 @@ export function StageLight({ src, imgW, imgH, focus, className = "" }: Props) {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const finePointer = window.matchMedia("(pointer: fine)").matches;
 
-    // Photo framing: the whole photo, height-fitted on the right on wide screens and
-    // width-fitted at the top on narrow ones, so the subject keeps its context.
+    // Photo framing: cover the canvas, zoomed so the speaker lands on `anchor`
+    // (right half on desktop, upper third on mobile), clamped so no edge shows.
     const layout = () => {
       const mobile = canvas.clientWidth < 768;
       // Lower internal resolution keeps the shader cheap; grain hides the softness.
@@ -196,23 +201,13 @@ export function StageLight({ src, imgW, imgH, focus, className = "" }: Props) {
 
       const A = canvas.clientWidth / canvas.clientHeight;
       const I = imgW / imgH;
-      let rw: number, rh: number, rx: number, ry: number;
-      if (mobile) {
-        rw = 1.08;
-        rh = (rw / I) * A;
-        rx = (1 - rw) / 2 + 0.04;
-        ry = 0.02;
-      } else {
-        rh = 1.04;
-        rw = (rh * I) / A;
-        if (rw > 0.75) {
-          rw = 0.75;
-          rh = (rw / I) * A;
-        }
-        rx = 1 - rw - 0.01;
-        ry = -0.02;
-      }
-      // Beam lands on the face, slightly below it (head and chest).
+      const { zoom, anchor } = mobile ? frame.mobile : frame.desktop;
+      // Photo size in screen uv when it just covers the canvas, then zoomed.
+      const rw = (A > I ? 1 : I / A) * zoom;
+      const rh = (A > I ? A / I : 1) * zoom;
+      const rx = Math.min(0, Math.max(1 - rw, anchor[0] - focus[0] * rw));
+      const ry = Math.min(0, Math.max(1 - rh, anchor[1] - focus[1] * rh));
+      // Where the speaker actually ends up after clamping: the beam aims there.
       const tx = rx + focus[0] * rw;
       const ty = ry + focus[1] * rh;
       gl.uniform2f(uRes, canvas.width, canvas.height);
@@ -317,7 +312,7 @@ export function StageLight({ src, imgW, imgH, focus, className = "" }: Props) {
       canvas.removeEventListener("webglcontextlost", onLost);
       img.onload = null;
     };
-  }, [src, imgW, imgH, focus]);
+  }, [src, imgW, imgH, focus, frame]);
 
   return (
     <canvas

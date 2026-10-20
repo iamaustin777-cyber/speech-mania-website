@@ -43,13 +43,14 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-[62%_20%] opacity-25 brightness-75"
+              className="object-cover object-[48%_62%] opacity-25 brightness-75"
             />
             <StageLight
               src={images.hero.src}
               imgW={images.hero.w}
               imgH={images.hero.h}
               focus={images.hero.focus}
+              frame={images.hero.frame}
               className="absolute inset-0 size-full"
             />
           </>

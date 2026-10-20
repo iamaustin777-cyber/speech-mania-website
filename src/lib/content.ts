@@ -12,17 +12,24 @@ const event = (n: number, alt: string, portrait = false): Img => ({
 
 export const images = {
   logo: { src: "/images/logo-speech-mania-transparent.png", alt: "Speech Mania Logo", w: 900, h: 384 },
-  // Hero is relit by the WebGL stage light. Public-domain photo from Wikimedia Commons:
-  // https://commons.wikimedia.org/wiki/File:Martin_Luther_King_-_March_on_Washington.jpg
+  // Hero is relit by the WebGL stage light. Official White House photo (public domain):
+  // https://commons.wikimedia.org/wiki/File:Barack_Obama_at_Cairo_University.jpg
+  // TODO: the White House attached a usage note to its photos (no manipulation, no use that
+  // suggests endorsement). Copyright allows reuse; confirm the team accepts that risk.
   // `focus` is where the speaker's face is in the photo (0-1, from top-left).
   hero: {
-    src: "/images/hero-mlk-1963.jpg",
-    alt: "Martin Luther King Jr. speaking at the March on Washington, 1963",
-    w: 1296,
-    h: 1403,
-    focus: [0.6, 0.21] as [number, number],
-    credit: "Martin Luther King Jr., March on Washington, 1963. Photo: Rowland Scherman, public domain.",
+    src: "/images/hero-obama-cairo-2009.jpg",
+    alt: "Barack Obama speaking at Cairo University, 2009",
+    w: 2400,
+    h: 1600,
+    focus: [0.476, 0.62] as [number, number],
+    frame: {
+      desktop: { zoom: 1.7, anchor: [0.72, 0.42] as [number, number] },
+      mobile: { zoom: 2.5, anchor: [0.5, 0.23] as [number, number] },
+    },
+    credit: "Barack Obama at Cairo University, 2009. Official White House photo by Pete Souza, public domain.",
   },
+
   tipscHome: event(45, "TIPSC Competition"),
   tipscPoster: {
     src: "/images/tipsc-poster.png",

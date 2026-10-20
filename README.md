@@ -39,7 +39,11 @@ Every push to `main` redeploys automatically.
 
 ### Home hero photo
 
-The home hero shows Martin Luther King Jr. at the March on Washington (1963), photographed by Rowland Scherman for the US government and in the public domain ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Martin_Luther_King_-_March_on_Washington.jpg)). The page credits it under the results row. It is relit live by a WebGL shader in `src/components/home/StageLight.tsx`; to use another photo, change `images.hero` in `src/lib/content.ts` (set `focus` to where the face is).
+The home hero shows Barack Obama speaking at Cairo University (4 June 2009), an official White House photo by Pete Souza, in the public domain ([Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Barack_Obama_at_Cairo_University.jpg)). The page credits it under the results row.
+
+**Before going public, decide as a team:** copyright allows reuse, but the White House published its photos with a usage note asking that they not be altered or used in ways that suggest the President's approval or endorsement. The hero relights the photo and sits next to sign-up buttons. A photo of your own speakers, or an unnamed speaker on stage, avoids this.
+
+The photo is relit live by a WebGL shader in `src/components/home/StageLight.tsx`. To use another photo, change `images.hero` in `src/lib/content.ts`: set `focus` to where the face is, and `frame` for zoom and placement.
 
 ### Optional hero video
 
