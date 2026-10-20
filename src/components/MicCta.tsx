@@ -1,4 +1,4 @@
-import { ButtonLink } from "./Button";
+import { GooeyButton } from "./Gooey";
 import { MicIcon } from "./Icons";
 import { Reveal } from "./Reveal";
 import { Spotlight } from "./Spotlight";
@@ -27,9 +27,9 @@ export function MicCta({
           {title}
         </h2>
         <p className="mt-4 max-w-[52ch] text-lg leading-relaxed">{body}</p>
-        <ButtonLink href={href} className="mt-8">
+        <GooeyButton href={href} className="mt-8">
           {button}
-        </ButtonLink>
+        </GooeyButton>
       </Reveal>
       <div aria-hidden className="stage-floor" />
     </section>

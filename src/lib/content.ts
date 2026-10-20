@@ -169,6 +169,28 @@ export const home = {
       { value: "4", label: "Preliminary Rounds" },
     ],
   },
+  // "One sentence is the interface": each event is a word; hover / tap shows how our
+  // students did in it at WIDPSC 2025 (results from the Programs and Impact pages).
+  events: [
+    {
+      name: "Persuasive",
+      tone: "#ff5a61",
+      result: "Poomkarn Taedullayasut reached the WIDPSC 2025 final in Persuasive Speaking.",
+      href: "/programs#national-team",
+    },
+    {
+      name: "Impromptu",
+      tone: "#ffd27a",
+      result: "Ravipat Rodphothong made the WIDPSC 2025 semi-finals in Impromptu Speaking.",
+      href: "/programs#national-team",
+    },
+    {
+      name: "Debating",
+      tone: "#8fb4ff",
+      result: "Prim Chantaraprapab made the WIDPSC 2025 semi-finals in Debating.",
+      href: "/programs#national-team",
+    },
+  ],
   programs: {
     title: "Our Programs",
     subtitle: "Competitions and training for every level",

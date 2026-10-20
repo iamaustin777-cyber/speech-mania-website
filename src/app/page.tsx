@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { EventSentence } from "@/components/home/EventSentence";
 import { Hero } from "@/components/home/Hero";
 import { LogoMarquee } from "@/components/home/LogoMarquee";
 import { ProgramStage } from "@/components/home/ProgramStage";
@@ -25,6 +26,8 @@ export default function HomePage() {
           <Scoreboard stats={home.impact.stats} />
         </div>
       </section>
+
+      <EventSentence />
 
       <Waveform variant="line" />
 

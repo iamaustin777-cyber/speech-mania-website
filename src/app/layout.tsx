@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Anton, Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { GooeyDefs } from "@/components/Gooey";
 import { Navbar } from "@/components/Navbar";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
@@ -31,12 +32,20 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${anton.variable} ${geist.variable} ${geistMono.variable}`}>
+      <head>
+        {/* Google Sans isn't in next/font's list yet, so it loads from Google Fonts directly. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" />
+      </head>
       <body>
         <Providers>
           <Navbar />
           <main id="main">{children}</main>
           <Footer />
         </Providers>
+        <GooeyDefs />
         <div aria-hidden className="grain" />
       </body>
     </html>

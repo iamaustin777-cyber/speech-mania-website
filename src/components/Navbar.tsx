@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { GooeyButton, GooeyNav } from "./Gooey";
 import { images, nav, REGISTER_HREF } from "@/lib/content";
 
 export function Navbar() {
@@ -80,29 +81,14 @@ export function Navbar() {
             <Image src={images.logo.src} alt={images.logo.alt} width={images.logo.w} height={images.logo.h} priority className="h-9 w-auto lg:h-11" />
           </Link>
 
-          <ul className="hidden items-center gap-1 lg:flex">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`relative rounded-lg px-3.5 py-2 text-sm transition-colors hover:text-ink ${
-                    isActive(item.href) ? "bg-ink/[0.07] text-ink" : "text-mute"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden lg:block">
+            <GooeyNav items={nav} />
+          </div>
 
           <div className="flex items-center gap-3">
-            <Link
-              href={REGISTER_HREF}
-              className="hidden rounded-lg bg-red px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-[#e3343c] sm:inline-flex"
-            >
+            <GooeyButton href={REGISTER_HREF} size="sm" className="hidden sm:inline-flex">
               Register
-            </Link>
+            </GooeyButton>
             <button
               ref={toggleRef}
               type="button"
