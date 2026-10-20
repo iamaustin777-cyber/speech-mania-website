@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { Scoreboard } from "@/components/Scoreboard";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Timeline } from "@/components/Timeline";
 import { Waveform } from "@/components/Waveform";
 import { gallery, impact } from "@/lib/content";
 
@@ -22,15 +23,15 @@ export default function ImpactPage() {
     <>
       <PageHeader title={impact.title} subtitle={impact.subtitle} />
 
-      <section aria-labelledby="numbers-title" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <section aria-labelledby="numbers-title" className="mx-auto max-w-[1400px] px-5 py-20 sm:px-10 lg:px-16">
         <SectionHeading id="numbers-title" title={impact.numbersTitle} subtitle={impact.numbersSubtitle} />
         <div className="mt-14">
-          <Scoreboard stats={impact.stats} />
+          <Scoreboard stats={impact.stats} size="md" />
         </div>
       </section>
 
       {/* Success stories: pull-quotes over a waveform */}
-      <section aria-labelledby="stories-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section aria-labelledby="stories-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <SectionHeading id="stories-title" title={impact.storiesTitle} subtitle={impact.storiesSubtitle} />
         <div className="mt-16 flex flex-col gap-24">
           {impact.stories.map((s, i) => (
@@ -61,41 +62,14 @@ export default function ImpactPage() {
         </div>
       </section>
 
-      {/* Achievements: a stage-lit path */}
-      <section aria-labelledby="achievements-title" className="relative border-y border-line bg-hall/50 py-24 lg:py-32">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading id="achievements-title" title={impact.achievementsTitle} subtitle={impact.achievementsSubtitle} />
-          <div className="relative mt-16 ml-3 sm:ml-6">
-            <span aria-hidden className="absolute -left-px top-0 h-full w-0.5 bg-gradient-to-b from-ink/10 via-gold/60 to-gold" />
-            <ol>
-            {timeline.map((t, i) => {
-              const latest = i === timeline.length - 1;
-              return (
-                <Reveal as="li" key={t.year} className="relative pb-16 pl-10 last:pb-0 sm:pl-16">
-                  <span
-                    aria-hidden
-                    className={`absolute -left-[7px] top-3 size-3.5 rounded-full ${latest ? "bg-gold shadow-[0_0_0_5px_rgb(255_210_122/0.18)]" : "border-2 border-gold/70 bg-void"}`}
-                  />
-                  <p className={`heading text-5xl sm:text-6xl ${latest ? "text-gold" : "text-ink/40"}`}>{t.year}</p>
-                  <h3 className="mt-2 text-xl font-medium text-ink">{t.title}</h3>
-                  <ul className="mt-5 flex flex-col gap-3">
-                    {t.items.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span aria-hidden className="mt-2.5 h-px w-4 shrink-0 bg-red" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </Reveal>
-              );
-            })}
-            </ol>
-          </div>
-        </div>
+      {/* Achievements: one axis, 2023 to 2025 */}
+      <section aria-labelledby="achievements-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
+        <SectionHeading id="achievements-title" title={impact.achievementsTitle} subtitle={impact.achievementsSubtitle} />
+        <Timeline milestones={timeline} />
       </section>
 
       {/* Gallery */}
-      <section aria-labelledby="gallery-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section aria-labelledby="gallery-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <SectionHeading id="gallery-title" title={impact.galleryTitle} subtitle={impact.gallerySubtitle} />
         <ul className="mt-14 columns-1 gap-4 sm:columns-2 lg:columns-3">
           {gallery.map((img) => (

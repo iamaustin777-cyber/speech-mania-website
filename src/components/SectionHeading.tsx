@@ -1,6 +1,9 @@
 import { Reveal } from "./Reveal";
 
-/** Headline stacked over a short paragraph. Eyebrows are optional and used sparingly. */
+/**
+ * Magazine-style section header (same structure as the GDG DVC site): a large title on
+ * the left, the short description on the right aligned to its baseline. Stacks on mobile.
+ */
 export function SectionHeading({
   eyebrow,
   title,
@@ -16,14 +19,26 @@ export function SectionHeading({
   id?: string;
   as?: "h1" | "h2";
 }) {
-  const center = align === "center";
+  if (align === "center") {
+    return (
+      <Reveal className="flex flex-col items-center gap-5 text-center">
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        <H id={id} className="heading max-w-4xl text-[clamp(2.75rem,5vw,5.75rem)]">
+          {title}
+        </H>
+        {subtitle && <p className="max-w-[56ch] text-lg leading-relaxed text-mute">{subtitle}</p>}
+      </Reveal>
+    );
+  }
   return (
-    <Reveal className={`flex flex-col gap-4 ${center ? "items-center text-center" : ""}`}>
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <H id={id} className="heading max-w-3xl text-4xl sm:text-5xl lg:text-6xl">
-        {title}
-      </H>
-      {subtitle && <p className={`max-w-[60ch] text-lg leading-relaxed text-mute ${center ? "mx-auto" : ""}`}>{subtitle}</p>}
+    <Reveal className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,25rem)] lg:items-end lg:gap-12">
+      <div>
+        {eyebrow && <p className="eyebrow mb-5">{eyebrow}</p>}
+        <H id={id} className="heading max-w-[16ch] text-[clamp(2.75rem,5vw,5.75rem)]">
+          {title}
+        </H>
+      </div>
+      {subtitle && <p className="text-lg leading-relaxed text-mute lg:pb-2">{subtitle}</p>}
     </Reveal>
   );
 }

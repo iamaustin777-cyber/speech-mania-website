@@ -19,7 +19,7 @@ export default function ContactPage() {
     <>
       <PageHeader title={contactPage.title} subtitle={contactPage.subtitle} />
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:px-8">
+      <section className="mx-auto grid max-w-[1400px] gap-10 px-5 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] lg:px-16">
         <Reveal className="glass rounded-2xl p-6 sm:p-10">
           <h2 className="heading mb-8 text-3xl">{contactPage.formTitle}</h2>
           <ContactForm />
@@ -75,7 +75,7 @@ export default function ContactPage() {
         </Reveal>
       </section>
 
-      <section aria-labelledby="faq-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+      <section aria-labelledby="faq-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16">
         <SectionHeading id="faq-title" title={contactPage.faqTitle} subtitle={contactPage.faqSubtitle} />
         <div className="mt-14">
           <Faq />

@@ -30,9 +30,9 @@ function Column({ title, links }: { title: string; links: { href: string; label:
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 bg-[#03050b]">
+    <footer className="relative mt-24 bg-[#070708]">
       <Waveform variant="line" className="-mt-7" speed="20s" />
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 pb-10 pt-14 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:px-8">
+      <div className="mx-auto grid max-w-[1400px] gap-12 px-5 pb-10 pt-14 sm:px-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:px-16">
         <div className="flex flex-col gap-6">
           <Image src={images.logo.src} alt={images.logo.alt} width={images.logo.w} height={images.logo.h} className="h-12 w-auto self-start" />
           <p className="max-w-xs leading-relaxed">{footer.tagline}</p>
@@ -76,7 +76,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-line/70">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-[1400px] flex-col gap-4 px-5 py-6 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-16">
           <p>{footer.copyright}</p>
           <ul className="flex gap-6">
             {footer.legal.map((l) => (

@@ -76,7 +76,7 @@ export function Navbar() {
           solid ? "glass border-x-0 border-t-0 shadow-[0_10px_40px_rgb(0_0_0/0.45)]" : "border-b border-transparent"
         }`}
       >
-        <nav aria-label="Main" className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-20 lg:px-8">
+        <nav aria-label="Main" className="mx-auto flex h-18 max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-10 lg:h-20 lg:px-16">
           <Link href="/" className="relative z-[61] shrink-0" aria-label="Speech Mania home">
             <Image src={images.logo.src} alt={images.logo.alt} width={images.logo.w} height={images.logo.h} priority className="h-9 w-auto lg:h-11" />
           </Link>

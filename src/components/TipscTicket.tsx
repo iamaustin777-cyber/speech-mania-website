@@ -26,8 +26,8 @@ function Barcode() {
 }
 
 const ticketTheme = {
-  background: "#111830",
-  stubBackground: "#0b1124",
+  background: "#18181b",
+  stubBackground: "#121214",
   color: "#f5f3ee",
   borderColor: "rgba(245,243,238,0.14)",
 };
@@ -35,7 +35,7 @@ const ticketTheme = {
 function Body({ compact }: { compact?: boolean }) {
   return (
     <div className={`flex h-full flex-col justify-end ${compact ? "p-6" : "p-10"}`}>
-      <p className="meta text-gold [text-shadow:0_1px_10px_rgb(5_7_15/0.95)]">Featured Event</p>
+      <p className="meta text-gold [text-shadow:0_1px_10px_rgb(10_10_11/0.95)]">Featured Event</p>
       <p className={`display mt-2 ${compact ? "text-6xl" : "text-[6.5rem]"}`}>
         TIPSC <span className="text-gold">2025</span>
       </p>

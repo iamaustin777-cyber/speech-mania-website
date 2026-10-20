@@ -61,9 +61,9 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
         <div className="absolute inset-x-0 top-[34svh] bottom-0 bg-gradient-to-b from-transparent via-void/90 to-void md:top-auto md:h-2/5 md:via-transparent" />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-4 pb-10 pt-[44svh] sm:px-6 md:pt-28 lg:px-8 lg:pb-14">
-        <div className="max-w-3xl">
-          <h1 id="hero-title" className="display text-[clamp(2.9rem,6.3vw,6.5rem)] leading-[0.9]">
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-end px-5 pb-10 pt-[44svh] sm:px-10 md:pt-28 lg:px-16 lg:pb-14">
+        <div className="max-w-[62rem]">
+          <h1 id="hero-title" className="display text-[clamp(3rem,6.4vw,7rem)]">
             <Spoken text={line1} start={0} />
             <Spoken text={line2} start={line1Words + 0.6} className="text-red" />
           </h1>
@@ -89,16 +89,16 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
         {/* Latest results */}
         <ul
           aria-label="Latest results"
-          className="fade-up mt-10 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 md:grid-cols-2 lg:mt-12"
+          className="fade-up mt-12 grid border-t border-ink/15 md:grid-cols-2 lg:mt-16"
           style={{ ["--d" as string]: "2.4s" }}
         >
           {recent.map((r) => (
-            <li key={r.event} className="bg-void/80">
-              <Link href={r.href} className="group flex h-full flex-col gap-1.5 p-5 transition-colors hover:bg-hall sm:p-6">
+            <li key={r.event} className="border-b border-ink/10 md:border-b-0 md:[&+&]:border-l md:[&+&]:border-ink/10">
+              <Link href={r.href} className="group flex h-full flex-col gap-1.5 py-6 transition-opacity md:py-8 md:pr-10 md:[li+li_&]:pl-10 [ul:hover_&:not(:hover)]:opacity-50">
                 <span className="meta">
                   <span className="text-gold">{r.event}</span> · {r.where}
                 </span>
-                <span className="heading mt-1 text-xl sm:text-2xl">{r.headline}</span>
+                <span className="heading mt-2 text-2xl sm:text-3xl">{r.headline}</span>
                 <span className="text-ink">{r.name}</span>
                 <span className="flex items-end justify-between gap-4 text-sm leading-relaxed">
                   {r.detail}

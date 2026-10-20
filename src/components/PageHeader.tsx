@@ -14,8 +14,8 @@ export function PageHeader({
   return (
     <section className="relative isolate overflow-hidden">
       <Spotlight follow intro />
-      <div className="relative mx-auto flex min-h-[52svh] max-w-7xl flex-col justify-end px-4 pb-14 pt-32 sm:px-6 lg:px-8 lg:pb-20">
-        <h1 className="heading fade-up text-5xl sm:text-7xl lg:text-8xl" style={{ ["--d" as string]: "0.4s" }}>
+      <div className="relative mx-auto flex min-h-[60svh] max-w-[1400px] flex-col justify-end px-5 pb-14 pt-32 sm:px-10 lg:px-16 lg:pb-20">
+        <h1 className="heading fade-up text-[clamp(3.5rem,8.5vw,9rem)]" style={{ ["--d" as string]: "0.4s" }}>
           {title}
         </h1>
         {subtitle && (

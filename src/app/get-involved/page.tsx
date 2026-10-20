@@ -21,7 +21,7 @@ export default function GetInvolvedPage() {
     <>
       <PageHeader title={getInvolved.title} subtitle={getInvolved.subtitle} />
 
-      <section aria-labelledby="paths-title" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section aria-labelledby="paths-title" className="mx-auto max-w-[1400px] px-5 py-16 sm:px-10 lg:px-16">
         <Reveal className="max-w-3xl">
           <h2 id="paths-title" className="sr-only">
             Ways to get involved
@@ -34,9 +34,9 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Registration on a dark glass panel */}
-      <section id="register" aria-labelledby="register-title" className="relative isolate overflow-hidden py-24 lg:py-32">
+      <section id="register" aria-labelledby="register-title" className="relative isolate overflow-hidden py-28 lg:py-44">
         <Spotlight className="opacity-60" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:px-8">
+        <div className="relative mx-auto grid max-w-[1400px] gap-12 px-5 sm:px-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:px-16">
           <SectionHeading id="register-title" title={registration.title} subtitle={registration.subtitle} />
           <Reveal className="glass rounded-2xl p-6 sm:p-10">
             <RegistrationForm />
@@ -45,8 +45,8 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Sponsorship */}
-      <section id="sponsor" aria-labelledby="sponsor-title" className="border-y border-line bg-hall/50 py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section id="sponsor" aria-labelledby="sponsor-title" className="border-y border-line bg-hall/50 py-28 lg:py-44">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-10 lg:px-16">
           <SectionHeading id="sponsor-title" title={sponsor.title} subtitle={sponsor.subtitle} />
           <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
             {sponsor.options.map((o, i) => (
@@ -93,7 +93,7 @@ export default function GetInvolvedPage() {
       </section>
 
       {/* Free resources as download cards */}
-      <section id="resources" aria-labelledby="resources-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section id="resources" aria-labelledby="resources-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <SectionHeading id="resources-title" title={resources.title} subtitle={resources.subtitle} />
         <ul className="mt-14 grid gap-5 sm:grid-cols-2">
           {resources.items.map((r, i) => (

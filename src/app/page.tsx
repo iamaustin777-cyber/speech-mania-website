@@ -20,7 +20,7 @@ export default function HomePage() {
     <>
       <Hero hasVideo={hasHeroVideo} />
 
-      <section aria-labelledby="impact-title" className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section aria-labelledby="impact-title" className="relative mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <SectionHeading id="impact-title" title={home.impact.title} subtitle={home.impact.subtitle} />
         <div className="mt-14">
           <Scoreboard stats={home.impact.stats} />
@@ -33,7 +33,7 @@ export default function HomePage() {
 
       <WhySpeech />
 
-      <section aria-label="Featured event" className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section aria-label="Featured event" className="mx-auto max-w-[1400px] px-5 py-12 sm:px-10 lg:px-16">
         <TipscTicket />
       </section>
 

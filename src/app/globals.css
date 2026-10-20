@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-void: #05070f;
-  --color-hall: #0b1020;
-  --color-panel: #111830;
-  --color-line: #232b47;
-  --color-ink: #f5f3ee;
-  --color-mute: #a9aec2;
+  --color-void: #0a0a0b;
+  --color-hall: #121214;
+  --color-panel: #18181b;
+  --color-line: #2a2a2e;
+  --color-ink: #f4f2ee;
+  --color-mute: #a8a29e;
   --color-red: #d7262e;
   /* Lighter red for small text: passes WCAG AA (≈6:1) on the dark background. */
   --color-red-text: #ff5a61;
   --color-navy: #043474;
   --color-gold: #ffd27a;
 
-  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
-  --font-sans: var(--font-geist), system-ui, sans-serif;
+  /* One family everywhere, as on the GDG DVC site: Google Sans, with Geist Mono for metadata. */
+  --font-sans: "Google Sans", var(--font-geist), system-ui, sans-serif;
   --font-heading: "Google Sans", var(--font-geist), system-ui, sans-serif;
+  --font-display: "Google Sans", var(--font-geist), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   --ease-stage: cubic-bezier(0.22, 1, 0.36, 1);
@@ -29,7 +30,8 @@ html {
 }
 
 body {
-  background: var(--color-void);
+  /* transparent so the auditorium canvas (fixed, behind everything) shows through */
+  background: transparent;
   color: var(--color-mute);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -48,14 +50,13 @@ body {
 }
 
 @layer components {
-  /* Condensed caps: reserved for the few "stage" moments (hero line, scoreboard, ticket, mic CTA). */
+  /* Big statement type for the stage moments (hero line, scoreboard, ticket, mic CTA). */
   .display {
     font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 0.88;
+    letter-spacing: -0.055em;
+    line-height: 0.95;
     color: var(--color-ink);
-    font-weight: 400;
+    font-weight: 500;
   }
 
   /* Everyday headings: plain sans, sentence weight, tight tracking. */
@@ -90,7 +91,7 @@ body {
   .meta {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    letter-spacing: 0;
+    letter-spacing: 0.02em;
     color: var(--color-mute);
   }
 
@@ -363,7 +364,9 @@ body {
   pointer-events: none;
   font-size: 0.875rem;
 }
-.gooey-nav .effect.text { color: transparent; }
+/* The label is redrawn above the pill (the pill paints over the list), dark when active. */
+.gooey-nav .effect.text { color: var(--color-ink); transition: color 0.3s ease; }
+.gooey-nav .effect.text.active { color: var(--color-void); }
 .gooey-nav .effect.filter { filter: url(#gooey-goo); }
 .gooey-nav .effect.filter::after,
 .gooey-btn__effect::after {

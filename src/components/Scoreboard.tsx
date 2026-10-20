@@ -47,44 +47,37 @@ export function ScoreNumber({ value, suffix, size = "lg" }: Pick<Stat, "value" |
     };
   }, [inView, reduced, value]);
 
-  const digits = String(shown).padStart(String(value).length, "0").split("");
-  const tile = size === "lg" ? "h-[1.15em] w-[0.72em] text-6xl sm:text-7xl" : "h-[1.15em] w-[0.72em] text-5xl";
-
   return (
-    <span ref={ref} className="inline-flex items-end gap-1" aria-label={`${value}${suffix ?? ""}`} role="img">
-      {digits.map((d, i) => (
-        <span
-          key={i}
-          aria-hidden
-          className={`relative grid place-items-center overflow-hidden rounded-md bg-gradient-to-b from-[#1a2140] to-[#0c1124] font-display leading-none text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.08),0_10px_30px_rgb(0_0_0/0.5)] ${tile}`}
-        >
-          <span key={d} className="flap">{d}</span>
-          {/* split-flap hinge */}
-          <span className="absolute inset-x-0 top-1/2 h-px bg-black/70" />
-        </span>
-      ))}
+    <span ref={ref} className={`display whitespace-nowrap tabular-nums ${size === "lg" ? "text-[clamp(3.5rem,6vw,6rem)]" : "text-[clamp(2.75rem,4.4vw,4.25rem)]"}`}>
+      <span aria-hidden>{shown}</span>
       {suffix && (
-        <span aria-hidden className={`font-display leading-none text-gold ${size === "lg" ? "text-4xl sm:text-5xl" : "text-3xl"} pb-1`}>
+        <span aria-hidden className="text-gold">
           {suffix}
         </span>
       )}
+      <span className="sr-only">
+        {value}
+        {suffix ?? ""}
+      </span>
     </span>
   );
 }
 
+/** Open number row (no boxes): hairlines above and below, thin dividers between. */
 export function Scoreboard({ stats, size = "lg" }: { stats: Stat[]; size?: "lg" | "md" }) {
   return (
-    <dl className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+    <dl className="grid grid-cols-2 border-y border-ink/10 lg:grid-cols-4">
       {stats.map((s, i) => (
         <div
           key={s.label}
-          className={`flex flex-col gap-4 bg-hall px-6 py-8 sm:px-8 sm:py-10 ${
-            // Odd count: let the last cell fill the row so the grid has no hole.
-            stats.length % 2 === 1 && i === stats.length - 1 ? "sm:col-span-2" : ""
-          }`}
+          className={`flex flex-col-reverse items-start gap-3 px-1 py-9 sm:px-6 sm:py-11 ${
+            i % 2 ? "border-l border-ink/10" : ""
+          } ${i % 4 ? "lg:border-l lg:border-ink/10" : "lg:border-l-0"} ${i >= 2 ? "border-t border-ink/10" : ""} ${
+            i >= 4 ? "lg:border-t" : "lg:border-t-0"
+          } ${i % 2 ? "pl-5" : ""}`}
         >
-          <dt className="order-2 text-[0.9375rem] text-mute">{s.label}</dt>
-          <dd className="order-1">
+          <dt className="meta uppercase tracking-[0.12em]">{s.label}</dt>
+          <dd>
             <ScoreNumber value={s.value} suffix={s.suffix} size={size} />
           </dd>
         </div>

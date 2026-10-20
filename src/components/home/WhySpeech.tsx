@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 /** Three statements that light up one by one as they scroll up the screen, like lines being delivered. */
 export function WhySpeech() {
   return (
-    <section aria-labelledby="why-title" className="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-40">
+    <section aria-labelledby="why-title" className="relative mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-40">
       <SectionHeading id="why-title" title={home.why.title} subtitle={home.why.subtitle} />
       <ol className="mt-20 flex flex-col gap-16 lg:mt-28 lg:gap-24">
         {home.why.items.map((item, i) => (

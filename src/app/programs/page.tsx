@@ -24,7 +24,7 @@ export default function ProgramsPage() {
       <PageHeader title={programs.title} subtitle={programs.subtitle} />
 
       {/* Act I: National Competitions + TIPSC */}
-      <section id="national-competitions" aria-labelledby="act1-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section id="national-competitions" aria-labelledby="act1-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
           <Reveal>
             <ActLabel n="I" />
@@ -62,7 +62,7 @@ export default function ProgramsPage() {
       <Waveform variant="line" />
 
       {/* Act II: In-Person Workshops (TBD) */}
-      <section aria-labelledby="act2-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section aria-labelledby="act2-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <Reveal>
           <ActLabel n="II" />
           <h2 id="act2-title" className="heading mt-3 text-4xl sm:text-6xl">
@@ -94,8 +94,8 @@ export default function ProgramsPage() {
       </section>
 
       {/* Act III: Training Workshops */}
-      <section id="training" aria-labelledby="act3-title" className="relative isolate overflow-hidden border-y border-line bg-hall/50 py-24 lg:py-32">
-        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:px-8">
+      <section id="training" aria-labelledby="act3-title" className="relative isolate overflow-hidden border-y border-line bg-hall/50 py-28 lg:py-44">
+        <div className="mx-auto grid max-w-[1400px] gap-14 px-5 sm:px-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:px-16">
           <Reveal>
             <ActLabel n="III" />
             <h2 id="act3-title" className="heading mt-3 text-4xl sm:text-6xl">
@@ -121,7 +121,7 @@ export default function ProgramsPage() {
       </section>
 
       {/* Act IV: National Team Management + podium */}
-      <section id="national-team" aria-labelledby="act4-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <section id="national-team" aria-labelledby="act4-title" className="mx-auto max-w-[1400px] px-5 py-28 sm:px-10 lg:px-16 lg:py-44">
         <Reveal className="max-w-4xl">
           <ActLabel n="IV" />
           <h2 id="act4-title" className="heading mt-3 text-4xl sm:text-6xl">
