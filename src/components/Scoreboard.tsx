@@ -25,13 +25,13 @@ const ICONS: Record<StatIcon, typeof Student> = {
   workshop: ChalkboardTeacher,
 };
 
-/** Brand-navy icon tile (from the logo); turns red and the glyph bobs on hover. */
+/** Thin line icon in a hairline square; turns brand red on hover. */
 function IconTile({ icon }: { icon?: StatIcon }) {
   if (!icon) return null;
   const Glyph = ICONS[icon];
   return (
     <span aria-hidden className="stat-tile">
-      <Glyph weight="regular" className="stat-tile__glyph" />
+      <Glyph weight="light" className="stat-tile__glyph" />
     </span>
   );
 }
