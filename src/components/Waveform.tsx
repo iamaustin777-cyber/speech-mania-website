@@ -122,8 +122,7 @@ function WaveBars({ count = 56, className = "", color = "currentColor", still = 
 
   useEffect(() => () => stopMic(), []);
 
-  return (
-    <div className={`flex items-center gap-5 ${mic ? "" : "contents"}`}>
+  const bars = (
       <div ref={ref} aria-hidden className={`flex items-center gap-[3px] ${live ? "wave-live" : ""} ${className}`} style={style}>
         {Array.from({ length: count }, (_, i) => (
           <span
@@ -149,7 +148,13 @@ function WaveBars({ count = 56, className = "", color = "currentColor", still = 
           </span>
         ))}
       </div>
-      {mic && (
+  );
+  // Without the mic button, render the bars on their own: no wrapper element, so callers can
+  // position them (e.g. absolutely, behind a testimonial) without an extra grid/flex item.
+  if (!mic) return bars;
+  return (
+    <div className="flex items-center gap-5">
+      {bars}
         <button
           type="button"
           onClick={() => (live ? stopMic() : startMic())}
@@ -165,7 +170,6 @@ function WaveBars({ count = 56, className = "", color = "currentColor", still = 
           <MicIcon aria-hidden className="size-3.5" />
           {error || (live ? "Listening. Stop" : "Try your voice")}
         </button>
-      )}
     </div>
   );
 }
