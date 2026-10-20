@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { home } from "@/lib/content";
 import { SectionHeading } from "@/components/SectionHeading";
 
-/** Three statements that light up one by one as they reach the middle of the screen — lines being delivered. */
+/** Three statements that light up one by one as they scroll up the screen, like lines being delivered. */
 export function WhySpeech() {
   return (
     <section aria-labelledby="why-title" className="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-40">
-      <SectionHeading id="why-title" eyebrow="The Opening Lines" title={home.why.title} subtitle={home.why.subtitle} />
+      <SectionHeading id="why-title" title={home.why.title} subtitle={home.why.subtitle} />
       <ol className="mt-20 flex flex-col gap-16 lg:mt-28 lg:gap-24">
         {home.why.items.map((item, i) => (
           <motion.li
@@ -20,11 +20,9 @@ export function WhySpeech() {
             viewport={{ once: true, margin: "0px 0px -40% 0px" }}
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="font-display text-2xl text-red lg:pb-3">0{i + 1}</span>
-            <h3 className="display text-[clamp(3rem,9vw,8.5rem)] [text-shadow:0_0_60px_rgb(255_210_122/0.25)]">
-              {item.title}.
-            </h3>
-            <p className="max-w-md text-lg leading-relaxed lg:pb-3">{item.body}</p>
+            <span className="meta text-red-text lg:pb-4">0{i + 1}</span>
+            <h3 className="heading text-[clamp(2.75rem,7vw,6.5rem)]">{item.title}</h3>
+            <p className="max-w-md text-lg leading-relaxed lg:pb-4">{item.body}</p>
           </motion.li>
         ))}
       </ol>

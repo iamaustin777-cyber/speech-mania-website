@@ -16,15 +16,15 @@ function Item({ q, a }: { q: string; a: string }) {
           aria-controls={`${id}-a`}
           id={`${id}-q`}
           onClick={() => setOpen((o) => !o)}
-          className="group flex w-full items-center justify-between gap-6 py-5 text-left text-lg font-semibold text-ink transition-colors hover:text-gold"
+          className="group flex w-full items-center justify-between gap-6 py-5 text-left text-lg font-medium text-ink transition-colors hover:text-gold"
         >
           {q}
           <span
-            className={`grid size-9 shrink-0 place-items-center rounded-full border transition duration-300 ${
-              open ? "rotate-45 border-gold bg-gold text-void" : "border-ink/20"
+            className={`grid size-8 shrink-0 place-items-center rounded-lg border transition duration-300 ${
+              open ? "rotate-45 border-ink/40 text-ink" : "border-ink/15 text-mute"
             }`}
           >
-            <PlusIcon className="size-4" />
+            <PlusIcon aria-hidden className="size-4" />
           </span>
         </button>
       </h4>
@@ -48,7 +48,7 @@ export function Faq() {
     <div className="grid gap-12 lg:grid-cols-2 lg:gap-x-16">
       {contactPage.faq.map((g) => (
         <section key={g.group} aria-label={g.group}>
-          <h3 className="eyebrow mb-2">{g.group}</h3>
+          <h3 className="meta mb-1 text-gold">{g.group}</h3>
           <ul>
             {g.items.map((it) => (
               <Item key={it.q} {...it} />

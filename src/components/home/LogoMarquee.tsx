@@ -7,7 +7,7 @@ function Logos({ hidden = false }: { hidden?: boolean }) {
       {home.partners.map((p) => (
         <li
           key={p.name}
-          className="group/logo grid h-24 w-44 shrink-0 place-items-center rounded-2xl bg-ink/[0.92] p-4 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 hover:shadow-[0_0_40px_rgb(255_210_122/0.25)] sm:h-28 sm:w-56"
+          className="group/logo grid h-24 w-44 shrink-0 place-items-center rounded-2xl bg-ink/[0.92] p-4 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 sm:h-28 sm:w-56"
         >
           <Image
             src={p.src}
@@ -27,7 +27,7 @@ function Logos({ hidden = false }: { hidden?: boolean }) {
 export function LogoMarquee() {
   return (
     <section aria-labelledby="trusted-title" className="py-24">
-      <h2 id="trusted-title" className="eyebrow mb-10 text-center">
+      <h2 id="trusted-title" className="meta mb-8 text-center">
         Trusted By
       </h2>
       <div className="marquee relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">

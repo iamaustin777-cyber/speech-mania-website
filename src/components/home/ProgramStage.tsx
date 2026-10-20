@@ -61,27 +61,17 @@ export function ProgramStage() {
         >
           {/* Intro panel */}
           <div className="flex flex-col justify-end gap-6 pb-6 lg:w-[30rem] lg:pb-0 lg:pr-8">
-            <p className="eyebrow flex items-center gap-3">
-              <span aria-hidden className="h-px w-8 bg-gold/70" />
-              Now on stage
-            </p>
-            <h2 id="programs-title" className="display text-6xl sm:text-7xl lg:text-8xl">
+            <h2 id="programs-title" className="heading text-5xl sm:text-6xl">
               {home.programs.title}
             </h2>
             <p className="max-w-md text-lg leading-relaxed">{home.programs.subtitle}</p>
-            <p aria-hidden className="hidden items-center gap-3 text-xs uppercase tracking-[0.25em] text-mute/70 lg:flex">
-              Scroll
-              <svg viewBox="0 0 40 8" className="w-10">
-                <path d="M0 4h38m-4-3 4 3-4 3" stroke="currentColor" fill="none" />
-              </svg>
-            </p>
           </div>
 
           {home.programs.items.map((p, i) => (
             <article
               key={p.title}
               onFocus={onFocus}
-              className="group relative isolate flex min-h-[28rem] flex-col justify-end overflow-hidden rounded-3xl border border-ink/10 p-6 sm:p-10 lg:h-[72vh] lg:max-h-[46rem] lg:w-[min(64vw,52rem)]"
+              className="group relative isolate flex min-h-[28rem] flex-col justify-end overflow-hidden rounded-2xl border border-ink/10 p-6 sm:p-10 lg:h-[72vh] lg:max-h-[46rem] lg:w-[min(64vw,52rem)]"
             >
               <Image
                 src={p.img.src}
@@ -95,19 +85,15 @@ export function ProgramStage() {
                 aria-hidden
                 className="spotlight -z-10 opacity-40 transition-opacity duration-700 group-hover:opacity-90"
               />
-              <span aria-hidden className="display absolute right-6 top-4 text-[8rem] leading-none text-ink/10 sm:right-10 sm:text-[11rem]">
-                0{i + 1}
-              </span>
 
-              {p.tag && (
-                <span className="mb-4 w-fit rounded-full border border-gold/50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  {p.tag}
-                </span>
-              )}
-              <h3 className="display text-5xl sm:text-6xl lg:text-7xl">{p.title}</h3>
+              <p className="meta mb-3 text-gold">
+                0{i + 1}
+                {p.tag && <span className="text-mute"> / {p.tag}</span>}
+              </p>
+              <h3 className="heading text-4xl sm:text-5xl">{p.title}</h3>
               <p className="mt-4 max-w-lg text-lg leading-relaxed text-ink/80">{p.body}</p>
               <div className="mt-8">
-                <ButtonLink href={p.href} variant="ghost" aria-label={`Learn more about ${p.title}`}>
+                <ButtonLink href={p.href} variant="secondary" aria-label={`Learn more about ${p.title}`}>
                   Learn More
                 </ButtonLink>
               </div>

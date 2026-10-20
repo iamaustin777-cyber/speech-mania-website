@@ -80,12 +80,12 @@ export const fieldProps = (name: string, errors: Errors) => ({
 export function Success({ title, body, onReset }: { title: string; body: string; onReset: () => void }) {
   return (
     <div role="status" className="flex flex-col items-center gap-5 py-12 text-center">
-      <span className="grid size-16 place-items-center rounded-full bg-gold/15 text-gold shadow-[0_0_50px_rgb(255_210_122/0.35)]">
-        <CheckIcon className="size-8" />
+      <span className="grid size-12 place-items-center rounded-full bg-gold/15 text-gold">
+        <CheckIcon aria-hidden className="size-6" />
       </span>
-      <p className="display text-4xl sm:text-5xl">{title}</p>
+      <p className="heading text-3xl">{title}</p>
       <p className="max-w-sm">{body}</p>
-      <button type="button" onClick={onReset} className="text-sm font-semibold uppercase tracking-[0.16em] text-gold underline-offset-4 hover:underline">
+      <button type="button" onClick={onReset} className="font-medium text-ink underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
         Send another
       </button>
     </div>

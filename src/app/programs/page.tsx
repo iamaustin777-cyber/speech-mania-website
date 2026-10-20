@@ -11,7 +11,7 @@ import { images, programs, widpscResults } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Programs",
   description:
-    "National competitions, TIPSC 2025, training workshops and Team Thailand management for WIDPSC — Speech Mania's public speaking programs.",
+    "Speech Mania runs national competitions, TIPSC 2025, training workshops and Team Thailand for WIDPSC.",
 };
 
 // Podium order: Semi-Finalist · Finalist · Semi-Finalist
@@ -21,28 +21,28 @@ export default function ProgramsPage() {
   const { competitions, inPerson, training, team } = programs;
   return (
     <>
-      <PageHeader eyebrow="Speech Mania Presents" title={programs.title} subtitle={programs.subtitle} />
+      <PageHeader title={programs.title} subtitle={programs.subtitle} />
 
-      {/* ACT I — National Competitions + TIPSC */}
+      {/* Act I: National Competitions + TIPSC */}
       <section id="national-competitions" aria-labelledby="act1-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
           <Reveal>
             <ActLabel n="I" />
-            <h2 id="act1-title" className="display mt-6 text-6xl sm:text-8xl">
+            <h2 id="act1-title" className="heading mt-3 text-4xl sm:text-6xl">
               {competitions.title}
             </h2>
             <p className="mt-8 text-lg leading-relaxed">{competitions.body}</p>
-            <ol className="mt-10 flex flex-col">
+            <ol className="mt-8 flex flex-col">
               {competitions.points.map((p, i) => (
-                <li key={p} className="flex items-baseline gap-5 border-t border-line py-4 text-ink last:border-b">
-                  <span className="font-display text-lg text-red-text">{String(i + 1).padStart(2, "0")}</span>
+                <li key={p} className="flex items-baseline gap-4 py-2.5 text-ink">
+                  <span className="meta text-red-text">{String(i + 1).padStart(2, "0")}</span>
                   {p}
                 </li>
               ))}
             </ol>
           </Reveal>
           <Reveal delay={0.1} className="relative">
-            <div className="overflow-hidden rounded-3xl border border-ink/10">
+            <div className="overflow-hidden rounded-2xl border border-ink/10">
               <Image src={images.competition.src} alt={images.competition.alt} width={images.competition.w} height={images.competition.h} sizes="(min-width:1024px) 45vw, 100vw" className="aspect-[4/5] w-full object-cover" />
             </div>
             <div aria-hidden className="absolute inset-x-0 -bottom-10 -z-10 h-40 rounded-full bg-gold/10 blur-3xl" />
@@ -61,11 +61,11 @@ export default function ProgramsPage() {
 
       <Waveform variant="line" />
 
-      {/* ACT II — In-Person Workshops (TBD) */}
+      {/* Act II: In-Person Workshops (TBD) */}
       <section aria-labelledby="act2-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
         <Reveal>
           <ActLabel n="II" />
-          <h2 id="act2-title" className="display mt-6 text-6xl sm:text-8xl">
+          <h2 id="act2-title" className="heading mt-3 text-4xl sm:text-6xl">
             {inPerson.title}
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed">{inPerson.subtitle}</p>
@@ -75,16 +75,14 @@ export default function ProgramsPage() {
             const img = i === 0 ? images.workshop1 : images.workshop2;
             return (
               <Reveal key={i} delay={i * 0.1}>
-                <article className="group relative isolate flex h-full min-h-[30rem] flex-col justify-end overflow-hidden rounded-3xl border border-dashed border-ink/20 p-8">
+                <article className="group relative isolate flex h-full min-h-[30rem] flex-col justify-end overflow-hidden rounded-2xl border border-dashed border-ink/20 p-8">
                   <Image src={img.src} alt={img.alt} fill sizes="(min-width:768px) 50vw, 100vw" className="-z-20 object-cover opacity-30 blur-[1px] grayscale transition duration-700 group-hover:opacity-45" />
                   <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-void via-void/80 to-void/30" />
-                  <span className="absolute right-6 top-6 rotate-6 rounded-md border-2 border-gold/70 px-3 py-1 font-display text-2xl tracking-wider text-gold">
-                    TBD
-                  </span>
+                  <p className="meta mb-4 text-gold">Coming soon</p>
                   <p className="text-lg leading-relaxed text-ink/85">{text}</p>
                   <div className="mt-8">
                     {/* TODO: hook "Notify Me" up to a mailing list; for now it opens the contact page. */}
-                    <ButtonLink href="/contact" variant="ghost">
+                    <ButtonLink href="/contact" variant="secondary">
                       Notify Me
                     </ButtonLink>
                   </div>
@@ -95,12 +93,12 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ACT III — Training Workshops as a setlist */}
+      {/* Act III: Training Workshops */}
       <section id="training" aria-labelledby="act3-title" className="relative isolate overflow-hidden border-y border-line bg-hall/50 py-24 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:px-8">
           <Reveal>
             <ActLabel n="III" />
-            <h2 id="act3-title" className="display mt-6 text-6xl sm:text-8xl">
+            <h2 id="act3-title" className="heading mt-3 text-4xl sm:text-6xl">
               {training.title}
             </h2>
             <p className="mt-6 text-lg leading-relaxed">{training.subtitle}</p>
@@ -111,14 +109,9 @@ export default function ProgramsPage() {
           <ol className="flex flex-col justify-center gap-4">
             {training.courses.map((c, i) => (
               <Reveal as="li" key={c.title} delay={i * 0.1}>
-                <article className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-void/60 p-7 transition duration-500 hover:border-gold/40 hover:shadow-[0_0_50px_-10px_rgb(255_210_122/0.25)] sm:p-9">
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    <span className="font-display text-xl text-red-text">Track {String(i + 1).padStart(2, "0")}</span>
-                    <span className="rounded-full border border-gold/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                      {c.length}
-                    </span>
-                  </div>
-                  <h3 className="display mt-4 text-4xl sm:text-5xl">{c.title}</h3>
+                <article className="relative overflow-hidden rounded-2xl border border-ink/10 bg-void/60 p-7 transition-colors duration-300 hover:border-ink/25 sm:p-8">
+                  <p className="meta text-gold">{c.length}</p>
+                  <h3 className="heading mt-3 text-2xl sm:text-3xl">{c.title}</h3>
                   <p className="mt-3 leading-relaxed">{c.body}</p>
                 </article>
               </Reveal>
@@ -127,22 +120,22 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* ACT IV — National Team Management + podium */}
+      {/* Act IV: National Team Management + podium */}
       <section id="national-team" aria-labelledby="act4-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
         <Reveal className="max-w-4xl">
           <ActLabel n="IV" />
-          <h2 id="act4-title" className="display mt-6 text-6xl sm:text-8xl">
+          <h2 id="act4-title" className="heading mt-3 text-4xl sm:text-6xl">
             {team.title}
           </h2>
           <p className="mt-6 text-lg leading-relaxed">{team.subtitle}</p>
         </Reveal>
 
-        <Reveal className="mt-14 grid gap-6 rounded-3xl border border-line bg-hall/60 p-8 sm:p-10 lg:grid-cols-[16rem_minmax(0,1fr)]">
-          <h3 className="display text-4xl text-gold">What is WIDPSC?</h3>
+        <Reveal className="mt-14 grid gap-6 rounded-2xl border border-line bg-hall/60 p-8 sm:p-10 lg:grid-cols-[16rem_minmax(0,1fr)]">
+          <h3 className="heading text-2xl text-gold sm:text-3xl">What is WIDPSC?</h3>
           <p className="text-lg leading-relaxed">{team.whatIs}</p>
         </Reveal>
 
-        <h3 className="eyebrow mt-24 text-center">{team.achievementsTitle}</h3>
+        <h3 className="heading mt-24 text-center text-2xl sm:text-3xl">{team.achievementsTitle}</h3>
         <ol className="relative mt-12 grid items-end gap-6 md:grid-cols-3 md:gap-4">
           {podium.map((r, i) => {
             const winner = r.place === "Finalist";
@@ -154,8 +147,8 @@ export default function ProgramsPage() {
                 className={winner ? "md:order-none order-first" : ""}
               >
                 <div className="px-2 pb-6 text-center">
-                  <p className={`text-xs font-semibold uppercase tracking-[0.22em] ${winner ? "text-gold" : "text-mute"}`}>{r.category}</p>
-                  <p className="display mt-3 text-3xl sm:text-4xl">{r.name}</p>
+                  <p className={`meta ${winner ? "text-gold" : ""}`}>{r.category}</p>
+                  <p className="heading mt-2 text-xl sm:text-2xl">{r.name}</p>
                 </div>
                 <div
                   className={`relative flex flex-col items-center justify-start rounded-t-2xl border-x border-t pt-6 ${
@@ -164,7 +157,7 @@ export default function ProgramsPage() {
                       : "h-40 border-ink/15 bg-gradient-to-b from-ink/10 to-transparent md:h-52"
                   }`}
                 >
-                  <span className={`display text-4xl sm:text-5xl ${winner ? "text-gold" : "text-ink"}`}>{r.place}</span>
+                  <span className={`heading text-2xl sm:text-3xl ${winner ? "text-gold" : "text-ink"}`}>{r.place}</span>
                   {winner && <div aria-hidden className="spotlight -top-40 opacity-80" />}
                 </div>
               </Reveal>

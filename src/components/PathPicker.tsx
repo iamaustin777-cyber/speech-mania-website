@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { ArrowIcon } from "./Icons";
 import { getInvolved } from "@/lib/content";
 
 const paths = getInvolved.paths;
@@ -48,7 +49,7 @@ export function PathPicker() {
               tabIndex={on ? 0 : -1}
               onClick={() => setActive(i)}
               onKeyDown={(e) => onKey(e, i)}
-              className={`relative isolate flex min-h-36 flex-col justify-end overflow-hidden rounded-2xl border p-5 text-left transition duration-500 sm:min-h-44 sm:p-6 ${
+              className={`relative isolate flex min-h-28 flex-col justify-end overflow-hidden rounded-2xl border p-5 text-left transition-colors duration-300 sm:min-h-36 sm:p-6 ${
                 on ? "border-gold/60 bg-hall" : "border-ink/10 bg-hall/40 hover:border-ink/25"
               }`}
             >
@@ -57,8 +58,7 @@ export function PathPicker() {
                 aria-hidden
                 className={`spotlight -z-10 transition-opacity duration-700 ${on ? "opacity-100" : "opacity-0"}`}
               />
-              <span aria-hidden className={`mb-3 block size-2 rounded-full transition ${on ? "bg-gold shadow-[0_0_14px_#ffd27a]" : "bg-ink/25"}`} />
-              <span className={`display text-2xl transition-colors sm:text-4xl ${on ? "text-ink" : "text-ink/55"}`}>{path.title}</span>
+              <span className={`heading text-xl transition-colors sm:text-2xl ${on ? "text-ink" : "text-ink/60"}`}>{path.title}</span>
             </button>
           );
         })}
@@ -76,7 +76,7 @@ export function PathPicker() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35 }}
-            className="glass grid gap-8 rounded-3xl p-7 sm:p-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center"
+            className="glass grid gap-8 rounded-2xl p-7 sm:p-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center"
           >
             <p className="text-xl leading-relaxed text-ink">{p.body}</p>
             <ul className="flex flex-col divide-y divide-line border-y border-line">
@@ -85,12 +85,10 @@ export function PathPicker() {
                   {/* TODO: links with href "#" are placeholder downloads (no PDF in the repo yet). */}
                   <Link
                     href={l.href}
-                    className="group flex items-center justify-between gap-4 py-4 font-semibold text-ink transition-colors hover:text-gold"
+                    className="group flex items-center justify-between gap-4 py-4 font-medium text-ink transition-colors hover:text-gold"
                   >
                     {l.label}
-                    <svg aria-hidden viewBox="0 0 16 16" className="size-4 shrink-0 transition-transform group-hover:translate-x-1">
-                      <path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <ArrowIcon aria-hidden className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
                   </Link>
                 </li>
               ))}

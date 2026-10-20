@@ -1,5 +1,6 @@
 import { Reveal } from "./Reveal";
 
+/** Headline stacked over a short paragraph. Eyebrows are optional and used sparingly. */
 export function SectionHeading({
   eyebrow,
   title,
@@ -17,17 +18,12 @@ export function SectionHeading({
 }) {
   const center = align === "center";
   return (
-    <Reveal className={`flex flex-col gap-5 ${center ? "items-center text-center" : ""}`}>
-      {eyebrow && (
-        <p className="eyebrow flex items-center gap-3">
-          <span aria-hidden className="h-px w-8 bg-gold/70" />
-          {eyebrow}
-        </p>
-      )}
-      <H id={id} className="display text-5xl sm:text-7xl lg:text-8xl">
+    <Reveal className={`flex flex-col gap-4 ${center ? "items-center text-center" : ""}`}>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <H id={id} className="heading max-w-3xl text-4xl sm:text-5xl lg:text-6xl">
         {title}
       </H>
-      {subtitle && <p className={`max-w-2xl text-lg leading-relaxed text-mute ${center ? "mx-auto" : ""}`}>{subtitle}</p>}
+      {subtitle && <p className={`max-w-[60ch] text-lg leading-relaxed text-mute ${center ? "mx-auto" : ""}`}>{subtitle}</p>}
     </Reveal>
   );
 }

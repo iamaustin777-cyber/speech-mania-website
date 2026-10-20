@@ -59,15 +59,7 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
       <Spotlight follow intro />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pt-36">
-        <p className="eyebrow fade-up mb-6 flex items-center gap-3" style={{ ["--d" as string]: "0.6s" }}>
-          <span aria-hidden className="relative flex size-2.5">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-red opacity-75" />
-            <span className="relative inline-flex size-2.5 rounded-full bg-red" />
-          </span>
-          Speech Mania · Thailand &amp; Southeast Asia
-        </p>
-
-        <h1 id="hero-title" className="display text-[clamp(3.4rem,11vw,11.5rem)] leading-[0.86]">
+        <h1 id="hero-title" className="display text-[clamp(3.2rem,9.5vw,9.75rem)] leading-[0.88]">
           <Spoken text={line1} start={0} />
           <Spoken text={line2} start={line1Words + 0.6} className="text-red" />
         </h1>
@@ -90,24 +82,19 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div className="fade-up max-w-xl" style={{ ["--d" as string]: "2.2s" }}>
-            <p className="text-lg leading-relaxed text-mute sm:text-xl">{body}</p>
+            <p className="text-lg leading-relaxed text-mute">{body}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <ButtonLink href={REGISTER_HREF}>Join a Workshop</ButtonLink>
-              <ButtonLink href="/programs" variant="ghost">
+              <ButtonLink href="/programs" variant="secondary">
                 Explore Programs
               </ButtonLink>
             </div>
           </div>
 
-          <div
-            className="fade-up glass flex w-fit items-center gap-4 rounded-2xl px-6 py-4"
-            style={{ ["--d" as string]: "2.5s" }}
-          >
-            <span className="display text-5xl text-gold">{badge.value}</span>
-            <span className="text-xs font-semibold uppercase leading-tight tracking-[0.2em] text-ink">
-              {badge.label}
-            </span>
-          </div>
+          <p className="fade-up flex items-baseline gap-3 border-l border-gold/50 pl-4" style={{ ["--d" as string]: "2.5s" }}>
+            <span className="heading text-4xl text-gold">{badge.value}</span>
+            <span className="text-ink">{badge.label}</span>
+          </p>
         </div>
       </div>
 

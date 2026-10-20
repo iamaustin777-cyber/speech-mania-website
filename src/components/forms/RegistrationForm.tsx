@@ -24,8 +24,8 @@ export function RegistrationForm() {
   if (status === "done")
     return (
       <Success
-        title="You're on the list!"
-        body="Thanks for registering. We'll be in touch soon with the details."
+        title="Registration received"
+        body="Thanks. We'll email you the workshop details."
         onReset={() => setStatus("idle")}
       />
     );

@@ -1,43 +1,40 @@
+import { ArrowUpRight, DownloadSimple } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "ghost" | "gold";
+// Shape rule: buttons are 8px radius, cards are 16px.
+type Variant = "primary" | "secondary" | "light";
 
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] transition duration-300 ease-stage";
+  "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-[0.9375rem] font-medium leading-none transition-colors duration-200 active:translate-y-px";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-red text-ink shadow-[0_0_24px_rgb(215_38_46/0.35)] hover:bg-[#e8343c] hover:shadow-[0_0_40px_rgb(215_38_46/0.65)]",
-  ghost:
-    "border border-ink/25 text-ink hover:border-gold/70 hover:text-gold hover:shadow-[0_0_30px_rgb(255_210_122/0.18)]",
-  gold: "bg-gold text-void hover:shadow-[0_0_40px_rgb(255_210_122/0.5)]",
+  primary: "bg-red text-ink hover:bg-[#e3343c]",
+  secondary: "border border-ink/15 bg-ink/[0.04] text-ink hover:border-ink/30 hover:bg-ink/[0.08]",
+  light: "bg-ink text-void hover:bg-white",
 };
 
-function Arrow() {
-  return (
-    <svg aria-hidden viewBox="0 0 16 16" className="size-4 transition-transform duration-300 group-hover:translate-x-1">
-      <path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+/** Optional trailing icon: "external" for off-page links, "download" for files. */
+type Icon = "external" | "download";
+const icons = { external: ArrowUpRight, download: DownloadSimple };
 
 export function ButtonLink({
   href,
   children,
   variant = "primary",
-  arrow = true,
+  icon,
   className = "",
   ...rest
-}: { href: string; children: ReactNode; variant?: Variant; arrow?: boolean; className?: string } & Omit<
+}: { href: string; children: ReactNode; variant?: Variant; icon?: Icon; className?: string } & Omit<
   ComponentProps<"a">,
   "href"
 >) {
   const cls = `${base} ${variants[variant]} ${className}`;
+  const Glyph = icon ? icons[icon] : null;
   const inner = (
     <>
       {children}
-      {arrow && <Arrow />}
+      {Glyph && <Glyph aria-hidden size={16} weight="bold" />}
     </>
   );
   // Plain <a> for mailto/placeholder links; Next <Link> for internal routes.

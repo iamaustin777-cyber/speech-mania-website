@@ -20,7 +20,7 @@ export default function HomePage() {
       <Hero hasVideo={hasHeroVideo} />
 
       <section aria-labelledby="impact-title" className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-        <SectionHeading id="impact-title" eyebrow="Scoreboard" title={home.impact.title} subtitle={home.impact.subtitle} />
+        <SectionHeading id="impact-title" title={home.impact.title} subtitle={home.impact.subtitle} />
         <div className="mt-14">
           <Scoreboard stats={home.impact.stats} />
         </div>

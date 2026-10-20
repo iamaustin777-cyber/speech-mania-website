@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Anton, Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton", display: "swap" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://speech-mania-website.vercel.app"),
@@ -29,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${anton.variable} ${inter.variable}`}>
+    <html lang="en" className={`${anton.variable} ${geist.variable} ${geistMono.variable}`}>
       <body>
         <Providers>
           <Navbar />

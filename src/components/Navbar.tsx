@@ -81,14 +81,11 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-ink ${
-                    isActive(item.href) ? "text-ink" : "text-mute"
+                  className={`relative rounded-lg px-3.5 py-2 text-sm transition-colors hover:text-ink ${
+                    isActive(item.href) ? "bg-ink/[0.07] text-ink" : "text-mute"
                   }`}
                 >
                   {item.label}
-                  {isActive(item.href) && (
-                    <span aria-hidden className="absolute inset-x-4 -bottom-0.5 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-                  )}
                 </Link>
               </li>
             ))}
@@ -97,7 +94,7 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href={REGISTER_HREF}
-              className="glow-pulse hidden rounded-full bg-red px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-ink transition hover:bg-[#e8343c] sm:inline-flex"
+              className="hidden rounded-lg bg-red px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-[#e3343c] sm:inline-flex"
             >
               Register
             </Link>
@@ -108,7 +105,7 @@ export function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="relative z-[61] grid size-11 place-items-center rounded-full border border-ink/20 text-ink lg:hidden"
+              className="relative z-[61] grid size-11 place-items-center rounded-lg border border-ink/20 text-ink lg:hidden"
             >
               <span aria-hidden className="relative block h-3 w-5">
                 <span className={`absolute left-0 h-0.5 w-5 bg-current transition-all duration-300 ${open ? "top-1.5 rotate-45" : "top-0"}`} />
@@ -135,7 +132,7 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`display block py-2 text-5xl sm:text-6xl ${isActive(item.href) ? "text-red" : ""}`}
+                  className={`heading block py-2 text-4xl sm:text-5xl ${isActive(item.href) ? "text-gold" : ""}`}
                 >
                   {item.label}
                 </Link>
@@ -145,7 +142,7 @@ export function Navbar() {
           <Link
             href={REGISTER_HREF}
             onClick={() => setOpen(false)}
-            className="glow-pulse mt-10 inline-flex w-fit rounded-full bg-red px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-ink"
+            className="mt-10 inline-flex w-fit rounded-lg bg-red px-5 py-3 font-medium text-ink"
           >
             Register
           </Link>

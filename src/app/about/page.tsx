@@ -27,16 +27,14 @@ export default function AboutPage() {
           </h1>
           <figure className="mt-10">
             <blockquote>
-              <p className="fade-up font-display text-[clamp(2.4rem,6vw,5.5rem)] uppercase leading-[0.98] text-ink" style={{ ["--d" as string]: "0.9s" }}>
+              <p className="heading fade-up text-[clamp(2rem,4.6vw,4.25rem)] leading-[1.08]" style={{ ["--d" as string]: "0.9s" }}>
                 <span aria-hidden className="text-red">&ldquo;</span>
                 {about.quote}
                 <span aria-hidden className="text-red">&rdquo;</span>
               </p>
             </blockquote>
-            <figcaption className="fade-up mt-10 flex items-center justify-center gap-4 text-sm font-semibold uppercase tracking-[0.22em] text-gold" style={{ ["--d" as string]: "1.5s" }}>
-              <span aria-hidden className="h-px w-10 bg-gold/60" />
+            <figcaption className="fade-up mt-10 text-gold" style={{ ["--d" as string]: "1.5s" }}>
               {about.quoteBy}
-              <span aria-hidden className="h-px w-10 bg-gold/60" />
             </figcaption>
           </figure>
         </div>
@@ -46,7 +44,7 @@ export default function AboutPage() {
       {/* Who we are: copy on the left rail, photos staged in overlapping frames */}
       <section aria-labelledby="who-title" className="mx-auto grid max-w-7xl gap-16 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-20 lg:px-8 lg:py-32">
         <div>
-          <SectionHeading id="who-title" eyebrow="Speech Mania" title="Who We Are" />
+          <SectionHeading id="who-title" title="Who We Are" />
           <div className="mt-10 flex flex-col gap-6 text-lg leading-relaxed">
             {about.whoWeAre.map((p, i) => (
               <Reveal key={i} delay={i * 0.08}>
@@ -74,29 +72,27 @@ export default function AboutPage() {
             Our Mission
           </h2>
           <Reveal>
-            <p className="mt-8 text-balance text-3xl font-semibold leading-snug text-ink sm:text-4xl lg:text-5xl">{about.mission}</p>
+            <p className="heading mt-8 text-3xl leading-snug sm:text-4xl lg:text-[2.75rem]">{about.mission}</p>
           </Reveal>
         </div>
       </section>
 
       {/* Why speech matters: scenes that stack like cards being dealt on stage */}
       <section aria-labelledby="matters-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-        <SectionHeading id="matters-title" eyebrow="Why Speech Matters" title={about.matters.title} subtitle={about.matters.subtitle} />
+        <SectionHeading id="matters-title" title={about.matters.title} subtitle={about.matters.subtitle} />
         <ol className="mt-16 flex flex-col gap-8">
           {about.matters.items.map((item, i) => (
             <li
               key={item.title}
-              className="sticky overflow-hidden rounded-3xl border border-ink/10 bg-hall shadow-[0_-20px_60px_rgb(0_0_0/0.6)]"
+              className="sticky overflow-hidden rounded-2xl border border-ink/10 bg-hall shadow-[0_-20px_60px_rgb(0_0_0/0.6)]"
               style={{ top: `${6 + i * 1.5}rem` }}
             >
               <div className="relative isolate grid min-h-[30rem] items-end p-6 sm:p-10 lg:min-h-[34rem] lg:p-14">
                 <Image src={item.img.src} alt={item.img.alt} fill sizes="100vw" className="-z-20 object-cover opacity-40" />
                 <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-void via-void/85 to-void/20" />
-                <span aria-hidden className="display absolute right-6 top-6 text-7xl text-ink/15 sm:text-9xl">
-                  0{i + 1}
-                </span>
                 <div className="max-w-2xl">
-                  <h3 className="display text-4xl sm:text-6xl">{item.title}</h3>
+                  <p className="meta mb-3 text-gold">0{i + 1}</p>
+                  <h3 className="heading text-3xl sm:text-5xl">{item.title}</h3>
                   <p className="mt-6 text-lg leading-relaxed text-ink/80">{item.body}</p>
                 </div>
               </div>
@@ -107,7 +103,7 @@ export default function AboutPage() {
 
       {/* Team as speaker cards with dramatic side light */}
       <section aria-labelledby="team-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-        <SectionHeading id="team-title" eyebrow="The Speakers" title={about.team.title} subtitle={about.team.subtitle} />
+        <SectionHeading id="team-title" title={about.team.title} subtitle={about.team.subtitle} />
         <ul className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {about.team.members.map((m, i) => (
             <Reveal as="li" key={m.name} delay={i * 0.08} className="group">
@@ -134,9 +130,9 @@ export default function AboutPage() {
                 />
                 <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-void to-transparent" />
               </div>
-              <h3 className="display mt-6 text-4xl">{m.name}</h3>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-red-text">{m.role}</p>
-              <p className="mt-4 leading-relaxed">{m.bio}</p>
+              <h3 className="heading mt-5 text-2xl">{m.name}</h3>
+              <p className="mt-1 text-red-text">{m.role}</p>
+              <p className="mt-3 leading-relaxed">{m.bio}</p>
             </Reveal>
           ))}
         </ul>

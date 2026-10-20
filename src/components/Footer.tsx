@@ -14,7 +14,7 @@ const socials = [
 function Column({ title, links }: { title: string; links: { href: string; label: string }[] }) {
   return (
     <div>
-      <h2 className="eyebrow mb-5">{title}</h2>
+      <h2 className="mb-4 text-sm font-medium text-ink">{title}</h2>
       <ul className="flex flex-col gap-3">
         {links.map((l) => (
           <li key={l.label}>
@@ -42,9 +42,9 @@ export function Footer() {
                 <a
                   href={href}
                   aria-label={label}
-                  className="grid size-11 place-items-center rounded-full border border-ink/15 text-mute transition hover:border-gold/60 hover:text-gold"
+                  className="grid size-10 place-items-center rounded-lg border border-ink/15 text-mute transition-colors hover:border-ink/40 hover:text-ink"
                 >
-                  <Icon className="size-5" />
+                  <Icon aria-hidden className="size-5" />
                 </a>
               </li>
             ))}
@@ -53,23 +53,23 @@ export function Footer() {
         <Column title="Quick Links" links={footer.quickLinks} />
         <Column title="Get Involved" links={footer.getInvolved} />
         <div>
-          <h2 className="eyebrow mb-5">Contact Us</h2>
+          <h2 className="mb-4 text-sm font-medium text-ink">Contact Us</h2>
           {/* TODO: confirm contact details (see lib/content.ts) */}
           <ul className="flex flex-col gap-4">
             <li className="flex gap-3">
-              <MailIcon className="mt-0.5 size-5 shrink-0 text-red-text" />
+              <MailIcon aria-hidden className="mt-0.5 size-5 shrink-0" />
               <a href={`mailto:${contact.email}`} className="break-all transition-colors hover:text-ink">
                 {contact.email}
               </a>
             </li>
             <li className="flex gap-3">
-              <PhoneIcon className="mt-0.5 size-5 shrink-0 text-red-text" />
+              <PhoneIcon aria-hidden className="mt-0.5 size-5 shrink-0" />
               <span>
                 {contact.phone} <span className="text-sm opacity-80">{contact.phoneNote}</span>
               </span>
             </li>
             <li className="flex gap-3">
-              <PinIcon className="mt-0.5 size-5 shrink-0 text-red-text" />
+              <PinIcon aria-hidden className="mt-0.5 size-5 shrink-0" />
               <span>{contact.location}</span>
             </li>
           </ul>

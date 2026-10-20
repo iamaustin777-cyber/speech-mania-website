@@ -83,7 +83,7 @@ export function Scoreboard({ stats, size = "lg" }: { stats: Stat[]; size?: "lg" 
             stats.length % 2 === 1 && i === stats.length - 1 ? "sm:col-span-2" : ""
           }`}
         >
-          <dt className="order-2 text-sm font-semibold uppercase tracking-[0.18em] text-mute">{s.label}</dt>
+          <dt className="order-2 text-[0.9375rem] text-mute">{s.label}</dt>
           <dd className="order-1">
             <ScoreNumber value={s.value} suffix={s.suffix} size={size} />
           </dd>
