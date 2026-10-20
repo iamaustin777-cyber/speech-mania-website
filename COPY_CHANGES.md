@@ -17,7 +17,7 @@ To undo any line, tell me which one and I'll restore the original.
 **hero**
 
 - Before: Speech Mania empowers students across Southeast Asia to discover the transformative power of public speaking. From first-time speakers to world champions, we help you develop the confidence and skills to make your voice heard.
-- After: Speech Mania is a youth-led group that runs public speaking competitions, workshops and Thailand's national team. We work with students across Southeast Asia, from first-time speakers to students competing at Worlds.
+- After: A youth-led group running public speaking competitions, workshops and Thailand's national team, for students across Southeast Asia.
 
 **Our Impact subtitle**
 

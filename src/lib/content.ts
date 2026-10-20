@@ -12,7 +12,9 @@ const event = (n: number, alt: string, portrait = false): Img => ({
 
 export const images = {
   logo: { src: "/images/logo-speech-mania-transparent.png", alt: "Speech Mania Logo", w: 900, h: 384 },
-  hero: event(40, "Student presenting on stage"),
+  // Hero is relit by the WebGL stage light; this photo has a speaker on the right half.
+  // `focus` is where the speaker stands in the photo (0-1, from top-left).
+  hero: { ...event(18, "Student presenting on stage"), focus: [0.59, 0.42] as [number, number] },
   tipscHome: event(45, "TIPSC Competition"),
   tipscPoster: {
     src: "/images/tipsc-poster.png",
@@ -95,8 +97,26 @@ export const home = {
   hero: {
     line1: "Find Your Voice.",
     line2: "Shape Your Future.",
-    body: "Speech Mania is a youth-led group that runs public speaking competitions, workshops and Thailand's national team. We work with students across Southeast Asia, from first-time speakers to students competing at Worlds.",
-    badge: { value: "180+", label: "Participants" },
+    body: "A youth-led group running public speaking competitions, workshops and Thailand's national team, for students across Southeast Asia.",
+    // Most recent competition and results, shown on the first screen.
+    recent: [
+      {
+        event: "WIDPSC 2025",
+        where: "Kuala Lumpur",
+        headline: "Finalist, Persuasive Speaking",
+        name: "Poomkarn Taedullayasut",
+        detail: "Semi-finalists: Ravipat Rodphothong (Impromptu) and Prim Chantaraprapab (Debating)",
+        href: "/programs#national-team",
+      },
+      {
+        event: "TIPSC 2025",
+        where: "1 February 2025",
+        headline: "180+ participants",
+        name: "At International Community School Bangkok",
+        detail: "Thailand's qualifier for WIDPSC, with Impromptu and Persuasive categories",
+        href: "/programs#tipsc",
+      },
+    ],
   },
   impact: {
     title: "Our Impact",
