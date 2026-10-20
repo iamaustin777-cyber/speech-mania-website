@@ -78,7 +78,7 @@ void main() {
   pool *= mix(1.0, 0.3, below);
 
   // --- relight: cold near-dark ambient + warm tungsten key light
-  vec3 warm = vec3(1.0, 0.82, 0.58);
+  vec3 warm = vec3(1.0, 0.94, 0.86);
   vec3 ambient = photo * vec3(0.016, 0.015, 0.016);
   vec3 col = ambient + photo * warm * (pool * 1.5 + beam * 0.4 * (1.0 - below * 0.8));
 

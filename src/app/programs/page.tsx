@@ -52,7 +52,7 @@ export default function ProgramsPage() {
         <div id="tipsc" className="mt-28 scroll-mt-28">
           <TipscTicket full />
           <Reveal className="mx-auto mt-14 max-w-4xl">
-            <div className="overflow-hidden rounded-2xl border border-ink/10 shadow-[0_40px_100px_-30px_rgb(255_210_122/0.25)]">
+            <div className="overflow-hidden rounded-2xl border border-ink/10 shadow-[0_40px_100px_-30px_rgb(231_223_211/0.25)]">
               <Image src={images.tipscPoster.src} alt={images.tipscPoster.alt} width={images.tipscPoster.w} height={images.tipscPoster.h} sizes="(min-width:1024px) 56rem, 100vw" className="w-full" />
             </div>
           </Reveal>
@@ -153,7 +153,7 @@ export default function ProgramsPage() {
                 <div
                   className={`relative flex flex-col items-center justify-start overflow-hidden rounded-t-2xl border-x border-t pt-6 ${
                     winner
-                      ? "h-64 border-gold/60 bg-gradient-to-b from-gold/25 to-gold/[0.02] shadow-[0_-30px_80px_-20px_rgb(255_210_122/0.45)] md:h-80"
+                      ? "h-64 border-gold/60 bg-gradient-to-b from-gold/25 to-gold/[0.02] shadow-[0_-30px_80px_-20px_rgb(231_223_211/0.45)] md:h-80"
                       : "h-40 border-ink/15 bg-gradient-to-b from-ink/10 to-transparent md:h-52"
                   }`}
                 >

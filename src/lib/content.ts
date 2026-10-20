@@ -180,13 +180,13 @@ export const home = {
     },
     {
       name: "Impromptu",
-      tone: "#ffd27a",
+      tone: "#e7dfd3",
       result: "Ravipat Rodphothong made the WIDPSC 2025 semi-finals in Impromptu Speaking.",
       href: "/programs#national-team",
     },
     {
       name: "Debating",
-      tone: "#8fb4ff",
+      tone: "#a9b8c9",
       result: "Prim Chantaraprapab made the WIDPSC 2025 semi-finals in Debating.",
       href: "/programs#national-team",
     },

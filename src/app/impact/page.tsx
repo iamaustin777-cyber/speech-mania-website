@@ -39,7 +39,7 @@ export default function ImpactPage() {
               <figure className={`relative grid gap-10 lg:gap-16 ${i % 2 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "lg:grid-cols-[18rem_minmax(0,1fr)]"}`}>
                 <Waveform
                   className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-48 w-full -translate-y-1/2 opacity-[0.12]"
-                  color={i % 2 ? "#ffd27a" : "#d7262e"}
+                  color={i % 2 ? "#e7dfd3" : "#d7262e"}
                   count={90}
                   still
                 />

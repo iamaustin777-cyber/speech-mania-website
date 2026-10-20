@@ -11,7 +11,7 @@
   /* Lighter red for small text: passes WCAG AA (≈6:1) on the dark background. */
   --color-red-text: #ff5a61;
   --color-navy: #043474;
-  --color-gold: #ffd27a;
+  --color-gold: #e7dfd3;
 
   /* One family everywhere, as on the GDG DVC site: Google Sans, with Geist Mono for metadata. */
   --font-sans: "Google Sans", var(--font-geist), system-ui, sans-serif;
@@ -163,8 +163,8 @@ body {
   width: 200%;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 17% 75% at 50% -8%, rgb(255 210 122 / 0.3), rgb(255 210 122 / 0.08) 45%, transparent 72%),
-    conic-gradient(from 180deg at 50% -10%, transparent 170deg, rgb(255 225 170 / 0.09) 176deg, rgb(255 225 170 / 0.14) 180deg, rgb(255 225 170 / 0.09) 184deg, transparent 190deg);
+    radial-gradient(ellipse 17% 75% at 50% -8%, rgb(231 223 211 / 0.3), rgb(231 223 211 / 0.08) 45%, transparent 72%),
+    conic-gradient(from 180deg at 50% -10%, transparent 170deg, rgb(255 244 228 / 0.09) 176deg, rgb(255 244 228 / 0.14) 180deg, rgb(255 244 228 / 0.09) 184deg, transparent 190deg);
 }
 .spotlight-intro {
   animation: spot-on 1.6s var(--ease-stage) 0.2s both;
@@ -252,7 +252,7 @@ body {
   height: 160px;
   transform: translateX(-50%);
   pointer-events: none;
-  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgb(255 210 122 / 0.16), transparent 70%);
+  background: radial-gradient(ellipse 50% 60% at 50% 100%, rgb(231 223 211 / 0.16), transparent 70%);
 }
 
 /* ---------- Logo marquee ---------- */
@@ -269,7 +269,7 @@ body {
 
 /* ---------- Mic glow ---------- */
 .mic-glow {
-  filter: drop-shadow(0 0 18px rgb(255 210 122 / 0.35));
+  filter: drop-shadow(0 0 18px rgb(231 223 211 / 0.35));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -322,7 +322,7 @@ body {
 /* ---------- Gooey nav + buttons (React Bits, via GDG DVC) ---------- */
 :root {
   --color-1: #d7262e;
-  --color-2: #ffd27a;
+  --color-2: #e7dfd3;
   --color-3: #f5f3ee;
   --color-4: #ff5a61;
 }
@@ -451,3 +451,24 @@ body {
 .gooey-btn__effect { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; pointer-events: none; filter: url(#gooey-goo); }
 .gooey-btn__effect::after { background: var(--gb-bg); }
 .gooey-btn.is-on .gooey-btn__effect.active::after { animation: goo-pill 0.3s ease both; }
+
+/* ---------- Scoreboard cells ---------- */
+.sb-cell { isolation: isolate; }
+/* warm light under the cursor, only while hovered (small surface, so the repaint is cheap) */
+.sb-cell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgb(231 223 211 / 0.1), transparent 70%);
+  transition: opacity 0.35s ease;
+}
+.sb-cell:hover::before { opacity: 1; }
+.sb-dot { background: rgb(244 242 238 / 0.12); }
+.sb-dot--lit { background: rgb(244 242 238 / 0.55); transition-property: opacity, transform, background-color; }
+.sb-cell:hover .sb-dot--lit { background: var(--color-gold); box-shadow: 0 0 8px rgb(231 223 211 / 0.45); }
+
+/* Mic mode: bars follow the voice (JS sets scaleY), so the idle pulse stops. */
+.wave-live .wave-bar { animation: none; max-height: 100% !important; transform: scaleY(0.12); transition: transform 60ms linear; }

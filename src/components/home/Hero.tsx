@@ -68,12 +68,9 @@ export function Hero({ hasVideo }: { hasVideo: boolean }) {
             <Spoken text={line2} start={line1Words + 0.6} className="text-red" />
           </h1>
 
-          <Waveform
-            className="fade-up mt-6 h-7 w-full max-w-[16rem] sm:h-9"
-            style={{ ["--d" as string]: "1.9s" }}
-            color="linear-gradient(180deg, #ffd27a, #d7262e)"
-            count={40}
-          />
+          <div className="fade-up mt-6" style={{ ["--d" as string]: "1.9s" }}>
+            <Waveform className="h-7 w-full max-w-[16rem] sm:h-9" color="linear-gradient(180deg, #e7dfd3, #d7262e)" count={40} mic />
+          </div>
 
           <div className="fade-up mt-6" style={{ ["--d" as string]: "2.1s" }}>
             <p className="max-w-[46ch] text-lg leading-relaxed text-ink/85">{body}</p>

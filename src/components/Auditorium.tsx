@@ -88,8 +88,8 @@ export function Auditorium() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       // soft pool of light on the floor
       const g = ctx.createRadialGradient(mx, my, 0, mx, my, LIGHT * 1.3);
-      g.addColorStop(0, "rgba(255,210,122,0.07)");
-      g.addColorStop(1, "rgba(255,210,122,0)");
+      g.addColorStop(0, "rgba(231,223,211,0.07)");
+      g.addColorStop(1, "rgba(231,223,211,0)");
       ctx.fillStyle = g;
       ctx.fillRect(mx - LIGHT * 1.3, my - LIGHT * 1.3, LIGHT * 2.6, LIGHT * 2.6);
       // seats inside the light glow warm
@@ -100,7 +100,7 @@ export function Auditorium() {
         if (d2 > LIGHT * LIGHT) continue;
         const k = 1 - Math.sqrt(d2) / LIGHT;
         const s = 2 + k * 1.6;
-        ctx.fillStyle = `rgba(255,${Math.round(200 + 20 * k)},${Math.round(140 + 30 * k)},${(0.12 + k * 0.7).toFixed(3)})`;
+        ctx.fillStyle = `rgba(${Math.round(236 + 14 * k)},${Math.round(228 + 14 * k)},${Math.round(214 + 16 * k)},${(0.12 + k * 0.75).toFixed(3)})`;
         ctx.fillRect(seats[i] - s / 2, seats[i + 1] - s / 2, s, s);
       }
     };

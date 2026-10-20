@@ -47,7 +47,7 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
               <span
                 aria-hidden
                 className={`absolute left-0 top-2 size-[15px] rounded-full lg:top-0 ${
-                  latest ? "bg-gold shadow-[0_0_0_6px_rgb(255_210_122/0.16)]" : "border-2 border-gold/70 bg-void"
+                  latest ? "bg-gold shadow-[0_0_0_6px_rgb(231_223_211/0.16)]" : "border-2 border-gold/70 bg-void"
                 }`}
               />
               <p className="meta">{latest ? "Latest" : i === 0 ? "Start" : " "}</p>
