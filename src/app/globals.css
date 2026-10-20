@@ -491,3 +491,20 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .cta-primary__arrow, .cta-link__text, .cta-link__arrow { transition: none; }
 }
+
+/* Every clickable control shows the grab hand; it closes while pressed. */
+a[href],
+button:not(:disabled),
+[role="button"],
+[role="tab"],
+summary,
+select,
+label[for] {
+  cursor: grab;
+}
+a[href]:active,
+button:not(:disabled):active,
+[role="button"]:active,
+[role="tab"]:active {
+  cursor: grabbing;
+}

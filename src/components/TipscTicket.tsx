@@ -44,7 +44,7 @@ function Body({ compact }: { compact?: boolean }) {
         {home.tipsc.stats.map((s) => (
           <p key={s.label}>
             <span className="meta block">{s.label}</span>
-            <span className={`heading ${compact ? "text-3xl" : "text-4xl"}`}>{s.value}</span>
+            <span className={`heading select-none ${compact ? "text-3xl" : "text-4xl"}`}>{s.value}</span>
           </p>
         ))}
         <Link
@@ -64,7 +64,7 @@ function Stub({ compact }: { compact?: boolean }) {
       <div className={compact ? "flex items-end justify-between gap-4" : ""}>
         <div>
           <p className="meta text-red-text">Admit one</p>
-          <p className={`display mt-2 ${compact ? "text-5xl" : "text-7xl"}`}>01</p>
+          <p className={`display mt-2 select-none ${compact ? "text-5xl" : "text-7xl"}`}>01</p>
           <p className={`display text-gold ${compact ? "text-2xl" : "text-4xl"}`}>Feb 2025</p>
         </div>
         {compact && <p className="meta max-w-[9rem] text-right">{t.venue}</p>}

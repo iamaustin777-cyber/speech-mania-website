@@ -18,6 +18,8 @@ function useRoll() {
   const reduced = useReducedMotion();
   const [rolled, setRolled] = useState(true);
   const [instant, setInstant] = useState(true);
+  const [fast, setFast] = useState(false);
+  const lastReplay = useRef(0);
   useEffect(() => {
     if (reduced) return;
     if (!inView) {
@@ -35,10 +37,25 @@ function useRoll() {
       window.clearTimeout(t);
     };
   }, [inView, reduced]);
-  return { ref, rolled, instant };
+  /** Hover: recount quickly (digits spin, dots relight). At most once a second. */
+  const replay = () => {
+    const now = performance.now();
+    if (reduced || now - lastReplay.current < 1000) return;
+    lastReplay.current = now;
+    setFast(true);
+    setInstant(true);
+    setRolled(false);
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        setInstant(false);
+        setRolled(true);
+      }),
+    );
+  };
+  return { ref, rolled, instant, fast, replay };
 }
 
-function Odometer({ value, rolled, instant, delay = 0 }: { value: number; rolled: boolean; instant: boolean; delay?: number }) {
+function Odometer({ value, rolled, instant, fast = false, delay = 0 }: { value: number; rolled: boolean; instant: boolean; fast?: boolean; delay?: number }) {
   return (
     <span aria-hidden className="inline-flex">
       {String(value)
@@ -51,7 +68,11 @@ function Odometer({ value, rolled, instant, delay = 0 }: { value: number; rolled
               style={{
                 // two stacked 0-9 strips so every wheel spins at least one full turn
                 transform: `translateY(-${((rolled ? 10 + d : 0) * 100) / 20}%)`,
-                transition: instant ? "none" : `transform 1.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 0.12}s`,
+                transition: instant
+                  ? "none"
+                  : fast
+                    ? `transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.07}s`
+                    : `transform 1.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 0.12}s`,
               }}
             >
               {Array.from({ length: 20 }, (_, k) => (
@@ -70,18 +91,20 @@ function StatNumber({
   stat,
   rolled,
   instant,
+  fast,
   delay,
   className,
 }: {
   stat: Stat;
   rolled: boolean;
   instant: boolean;
+  fast?: boolean;
   delay?: number;
   className: string;
 }) {
   return (
-    <span className={`display whitespace-nowrap tabular-nums ${className}`}>
-      <Odometer value={stat.value} rolled={rolled} instant={instant} delay={delay} />
+    <span className={`display inline-block whitespace-nowrap tabular-nums select-none ${className}`}>
+      <Odometer value={stat.value} rolled={rolled} instant={instant} fast={fast} delay={delay} />
       {stat.suffix && (
         <span aria-hidden className="text-red">
           {stat.suffix}
@@ -103,11 +126,12 @@ function gridFor(s: Stat) {
 }
 
 function GridCell({ stat, index, big }: { stat: Stat; index: number; big: boolean }) {
-  const { ref, rolled, instant } = useRoll();
+  const { ref, rolled, instant, fast, replay } = useRoll();
   const grid = gridFor(stat);
   return (
     <div
       ref={ref}
+      onPointerEnter={(e) => e.pointerType === "mouse" && replay()}
       className={`group relative flex flex-col gap-6 py-10 sm:py-12 ${index % 2 ? "border-l border-ink/10 pl-5 sm:pl-8" : "pr-4 sm:pr-8"} ${
         index % 4 ? "lg:border-l lg:border-ink/10 lg:pl-8" : "lg:border-l-0 lg:pl-0"
       } ${index >= 2 ? "border-t border-ink/10" : ""} ${index >= 4 ? "lg:border-t" : "lg:border-t-0"}`}
@@ -123,8 +147,11 @@ function GridCell({ stat, index, big }: { stat: Stat; index: number; big: boolea
           stat={stat}
           rolled={rolled}
           instant={instant}
+          fast={fast}
           delay={index * 0.08}
-          className={big ? "text-[clamp(3.5rem,6.2vw,6.25rem)]" : "text-[clamp(2.75rem,4.4vw,4.25rem)]"}
+          className={`transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1.5 ${
+            big ? "text-[clamp(3.5rem,6.2vw,6.25rem)]" : "text-[clamp(2.75rem,4.4vw,4.25rem)]"
+          }`}
         />
         <span aria-hidden className="flex flex-col gap-2.5">
           <span className="grid w-fit grid-cols-[repeat(10,6px)] gap-[6px]">
@@ -135,7 +162,15 @@ function GridCell({ stat, index, big }: { stat: Stat; index: number; big: boolea
                 style={{
                   background: k < grid.lit && rolled ? "var(--color-red)" : "rgb(244 242 238 / 0.1)",
                   boxShadow: k < grid.lit && rolled ? "0 0 6px rgb(215 38 46 / 0.55)" : "none",
-                  transition: instant ? "none" : `background-color .4s ease ${0.45 + k * 0.025}s, box-shadow .4s ease ${0.45 + k * 0.025}s`,
+                  transform: rolled ? "scale(1)" : "scale(0.35)",
+                  // first view: a slow fill; hover: a quick ripple with a little overshoot
+                  transition: instant
+                    ? "none"
+                    : (() => {
+                        const d = fast ? 0.12 + k * 0.014 : 0.45 + k * 0.025;
+                        const t = fast ? ".35s" : ".4s";
+                        return `background-color ${t} ease ${d}s, box-shadow ${t} ease ${d}s, transform .45s cubic-bezier(.34,1.7,.64,1) ${d}s`;
+                      })(),
                 }}
               />
             ))}
@@ -149,7 +184,7 @@ function GridCell({ stat, index, big }: { stat: Stat; index: number; big: boolea
 
 export function Scoreboard({ stats, size = "lg" }: { stats: Stat[]; size?: "lg" | "md" }) {
   return (
-    <dl className="grid grid-cols-2 border-y border-ink/10 lg:grid-cols-4">
+    <dl className="grid select-none grid-cols-2 border-y border-ink/10 lg:grid-cols-4">
       {stats.map((s, i) => (
         <GridCell key={s.label} stat={s} index={i} big={size === "lg"} />
       ))}

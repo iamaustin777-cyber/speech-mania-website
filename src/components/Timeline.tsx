@@ -51,7 +51,7 @@ export function Timeline({ milestones }: { milestones: Milestone[] }) {
                 }`}
               />
               <p className="meta">{latest ? "Latest" : i === 0 ? "Start" : " "}</p>
-              <p className={`display mt-2 text-[clamp(3.5rem,6vw,5.5rem)] tabular-nums ${latest ? "text-gold" : "text-ink/45"}`}>{m.year}</p>
+              <p className={`display mt-2 select-none text-[clamp(3.5rem,6vw,5.5rem)] tabular-nums ${latest ? "text-gold" : "text-ink/45"}`}>{m.year}</p>
               <h3 className="heading mt-3 text-2xl">{m.title}</h3>
               <ul className="mt-5 flex flex-col gap-2.5">
                 {m.items.map((item) => (

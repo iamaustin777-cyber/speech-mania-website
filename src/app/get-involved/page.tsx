@@ -75,7 +75,7 @@ export default function GetInvolvedPage() {
                 {sponsor.impact.map((s) => (
                   <div key={s.value} className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                     <dt className="order-2 sm:text-right">{s.label}</dt>
-                    <dd className="heading order-1 text-4xl">{s.value}</dd>
+                    <dd className="heading order-1 select-none text-4xl">{s.value}</dd>
                   </div>
                 ))}
               </dl>
